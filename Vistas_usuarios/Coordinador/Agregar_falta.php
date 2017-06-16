@@ -185,7 +185,7 @@ session_start();
           </a>
           <ul class="treeview-menu">
             <li><a href="agregar_falta.php"><i class="fa fa-circle-o"></i>Agregar Falta</a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Eliminar Falta</a></li>
+            <li><a href="eliminar_falta.php"><i class="fa fa-circle-o"></i> Eliminar Falta</a></li>
             <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Modificar Falta</a></li>
           </ul>
         </li>
@@ -248,7 +248,7 @@ session_start();
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form action="SQLFalta.php" method="POST" method="POST" role="form">
+              <form action="M_agregar_falta.php" method="POST" method="POST" role="form">
                 <!-- select -->
                 <div class="form-group">
                   <label>Usuario</label>

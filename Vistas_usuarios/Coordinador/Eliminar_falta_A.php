@@ -38,7 +38,7 @@ session_start();
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="../index2.html" class="logo">
+    <a href="../Coordinador.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>E</span>
       <!-- logo for regular state and mobile devices -->
@@ -99,7 +99,7 @@ session_start();
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../imagenes/logo.jpg" class="user-image" alt="User Image">
+              <img src="../../imagenes/logo.jpg" class="user-image" alt="User Image">
               <?php
               if(isset($_SESSION['USUARIO'])){
                 echo "<span>".$_SESSION['USUARIO']['USU_NOMBRES']."</span>";
@@ -109,7 +109,7 @@ session_start();
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../imagenes/logo.jpg" class="img-circle" alt="User Image">
+                <img src="../../imagenes/logo.jpg" class="img-circle" alt="User Image">
                 <?php
                     $tipousuario="Empaque";
                     echo "<p>".$_SESSION['USUARIO']['USU_NOMBRES']." - ".$tipousuario."</p>";
@@ -142,7 +142,7 @@ session_start();
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="../imagenes/logo.jpg" class="img-circle" alt="User Image">
+          <img src="../../imagenes/logo.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <?php
@@ -229,24 +229,22 @@ session_start();
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="box-body">
-      <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-        La falta no ha podido ser registrada, porfavor intentalo de nuevo.
-        <?php
-          echo "<h1>".mysqli_error($con)."</h1>";
-        ?>
+      <div class="box-body">
+        <div class="alert alert-info alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+           <h4><i class="icon fa fa-info"></i> Alert!</h4>
+          La falta ha sido eliminada exitosamente!
+        </div>
       </div>
-    </div>
     <section class="content-header">
       <h1>
-        Agregar Faltas
+         Faltas
         <small>de empaques</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Faltas</a></li>
-        <li class="active">Agregar faltas</li>
+        <li class="active">Eliminar faltas</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -258,59 +256,52 @@ session_start();
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form action="SQLFalta.php" method="POST" method="POST" role="form">
+              <form action="M_Eliminar_falta.php" method="POST" method="POST" role="form">
                 <!-- select -->
-                <div class="form-group">
-                  <label>Usuario</label>
-                  <select name="usuario" required class="form-control">
-                    <option></option>
-                    <?php
-                      $con = new mysqli($servidor, $usuario, $password, $bd);
-                      $con->set_charset("utf8");
-                      global $con;
-                      //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
-                      $sql = "SELECT * FROM usuario";
-                      $respuesta = $con -> query($sql);
-                      $filas = mysqli_num_rows($respuesta);
-                      if($filas > 0)
-                      {
-                          while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
-                        { 
-                              echo "<option value=".$result["USU_RUN"].">".$result["USU_NOMBRES"], " ", $result["USU_APAT"], "</option>";
-                          }
+                <div class="box-body">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>Nombres</th>
+                  <th>Apellido Paterno</th>
+                  <th>TURNO</th>
+                  <th>FECHA</th>
+                  <th>FALTA</th>
+                  <th>Eliminar</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <?php 
+                $con = new mysqli($servidor, $usuario, $password, $bd);
+                $con->set_charset("utf8");
+                  global $con;
+                  $sql = "SELECT TUFA_FALTA, USU_NOMBRES, USU_APAT, TTU_NOMBRE, TUR_FECHA, TFA_NOMBRE FROM tur_fal, usuario, turno, falta, tipo_turno, tipo_falta WHERE TUFA_USUARIO=usu_run AND TUFA_TURNO=tur_id AND TUFA_FALTA=FAL_ID AND TUR_ttu=ttu_id AND fal_tipofalta=tfa_id";
+        $respuesta = $con -> query($sql);
+        $filas = mysqli_num_rows($respuesta);
+                if($filas > 0)
+                  {
+                      while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
+                    {
+                      
+                          echo "<tr>";
+                          echo "<td>", $result["USU_NOMBRES"], "</td>";
+                          echo "<td>", $result["USU_APAT"],"</td>" ;
+                          echo "<td>", $result["TTU_NOMBRE"],"</td>";
+                          echo "<td>", $result["TUR_FECHA"], "</td> ";
+                          echo "<td>", $result["TFA_NOMBRE"],"</td>" ;
+                          echo '<td><input type="checkbox" name="Eliminar[]" value='.$result["TUFA_FALTA"].'></td>';
+                          echo "</tr>";
                       }
-                    ?>
-                  </select>
+                }
+                ?>
+                
+                </tbody>
+              </table>
+            </div>
                 </div>
-                <div class="form-group">
-                  <label>Turno</label>
-                  <select name="turno" required class="form-control">
-                    <option></option>
-                    <?php
-                      $con = new mysqli($servidor, $usuario, $password, $bd);
-                      $con->set_charset("utf8");
-                      global $con;
-                      $sql = "SELECT TUR_ID, TTU_NOMBRE ,TUR_FECHA  FROM turno, tipo_turno WHERE TUR_TTU=TTU_ID;";
-                      $respuesta = $con -> query($sql);
-                      $filas = mysqli_num_rows($respuesta);
-                      if($filas > 0)
-                      {
-                          while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
-                        {
-                              echo "<option value=".$result["TUR_ID"].">".$result["TTU_NOMBRE"], " ", $result["TUR_FECHA"], "</option>";
-                          }
-                      }
-                    ?>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label>Fecha de ingreso de la falta</label>
-                  <input type="text" class="form-control" placeholder=<?php $fecha=date("Y")."-".date("m")."-".date("d"); //Fecha del día donde se ingresa la falta
-                      echo $fecha;
-                ?> disabled>
-                </div>
-                <div class="col-xs-4">
-                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat">Agregar</button>
+                <div class="col-xs-4"> 
+                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value=2 >Eliminar</button>
                 </div>
                 
               </form>

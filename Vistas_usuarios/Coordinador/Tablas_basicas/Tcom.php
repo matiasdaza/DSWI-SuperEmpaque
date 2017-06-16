@@ -1,5 +1,5 @@
 <?php 
-include ('../../conexion/conexion.php');
+include ('../../../conexion/conexion.php');
 session_start();
 ?>
 
@@ -12,18 +12,18 @@ session_start();
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- jvectormap -->
-  <link rel="stylesheet" href="../../plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+  <link rel="stylesheet" href="../../../plugins/jvectormap/jquery-jvectormap-1.2.2.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../../../dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../../../dist/css/skins/_all-skins.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,7 +38,7 @@ session_start();
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="../index2.html" class="logo">
+    <a href="../../Coordinador.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>E</span>
       <!-- logo for regular state and mobile devices -->
@@ -99,7 +99,7 @@ session_start();
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../imagenes/logo.jpg" class="user-image" alt="User Image">
+              <img src="../../../imagenes/logo.jpg" class="user-image" alt="User Image">
               <?php
               if(isset($_SESSION['USUARIO'])){
                 echo "<span>".$_SESSION['USUARIO']['USU_NOMBRES']."</span>";
@@ -109,7 +109,7 @@ session_start();
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../imagenes/logo.jpg" class="img-circle" alt="User Image">
+                <img src="../../../imagenes/logo.jpg" class="img-circle" alt="User Image">
                 <?php
                     $tipousuario="Empaque";
                     echo "<p>".$_SESSION['USUARIO']['USU_NOMBRES']." - ".$tipousuario."</p>";
@@ -121,7 +121,7 @@ session_start();
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="../registro_usuario/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../../registro_usuario/logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -142,7 +142,7 @@ session_start();
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="../imagenes/logo.jpg" class="img-circle" alt="User Image">
+          <img src="../../../imagenes/logo.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <?php
@@ -228,95 +228,136 @@ session_start();
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="box-body">
-      <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-        La falta no ha podido ser registrada, porfavor intentalo de nuevo.
-        <?php
-          echo "<h1>".mysqli_error($con)."</h1>";
-        ?>
-      </div>
-    </div>
     <section class="content-header">
       <h1>
-        Agregar Faltas
-        <small>de empaques</small>
+         Tabla Comuna
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Faltas</a></li>
-        <li class="active">Agregar faltas</li>
+        <li><a href="#">Mantención de tablas</a></li>
+        <li><a href="active">Tabla Comuna</a></li>
       </ol>
     </section>
     <!-- Main content -->
     <section class="content">
       <!-- general form elements disabled -->
-          <div class="box box-warning">
+          <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Falta</h3>
+              <h3 class="box-title">Agregar</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form action="SQLFalta.php" method="POST" method="POST" role="form">
+              <form action="M_agregar_falta.php" method="POST" method="POST" role="form">
                 <!-- select -->
                 <div class="form-group">
-                  <label>Usuario</label>
-                  <select name="usuario" required class="form-control">
+                  <label>Comuna</label>
+                 <input name=comuna type="text" class="form-control" placeholder="Maipú">
+                </div>
+
+                <div class="form-group">
+                  <label>Región</label>
+                  <select name="region" required class="form-control">
                     <option></option>
                     <?php
                       $con = new mysqli($servidor, $usuario, $password, $bd);
                       $con->set_charset("utf8");
                       global $con;
                       //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
-                      $sql = "SELECT * FROM usuario";
-                      $respuesta = $con -> query($sql);
-                      $filas = mysqli_num_rows($respuesta);
-                      if($filas > 0)
-                      {
-                          while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
-                        { 
-                              echo "<option value=".$result["USU_RUN"].">".$result["USU_NOMBRES"], " ", $result["USU_APAT"], "</option>";
-                          }
-                      }
-                    ?>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label>Turno</label>
-                  <select name="turno" required class="form-control">
-                    <option></option>
-                    <?php
-                      $con = new mysqli($servidor, $usuario, $password, $bd);
-                      $con->set_charset("utf8");
-                      global $con;
-                      $sql = "SELECT TUR_ID, TTU_NOMBRE ,TUR_FECHA  FROM turno, tipo_turno WHERE TUR_TTU=TTU_ID;";
+                      $sql = "SELECT * FROM region ";
                       $respuesta = $con -> query($sql);
                       $filas = mysqli_num_rows($respuesta);
                       if($filas > 0)
                       {
                           while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
                         {
-                              echo "<option value=".$result["TUR_ID"].">".$result["TTU_NOMBRE"], " ", $result["TUR_FECHA"], "</option>";
+                              echo "<option value=".$result["REG_ID"].">".$result["REG_NOMBRE"]."</option>";
                           }
                       }
                     ?>
                   </select>
                 </div>
-                <div class="form-group">
-                  <label>Fecha de ingreso de la falta</label>
-                  <input type="text" class="form-control" placeholder=<?php $fecha=date("Y")."-".date("m")."-".date("d"); //Fecha del día donde se ingresa la falta
-                      echo $fecha;
-                ?> disabled>
-                </div>
-                <div class="col-xs-4">
-                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat">Agregar</button>
+                <div class="col-xs-4"> 
+                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="1">Agregar</button>
                 </div>
                 
               </form>
             </div>
             <!-- /.box-body -->
           </div>
+
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">Eliminar</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <form action="M_agregar_falta.php" method="POST" method="POST" role="form">
+                <div class="form-group">
+                  <label>Comuna</label>
+                  <select name="comuna" required class="form-control">
+                    <option></option>
+                    <?php
+                      $con = new mysqli($servidor, $usuario, $password, $bd);
+                      $con->set_charset("utf8");
+                      global $con;
+                      //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
+                      $sql = "SELECT * FROM comuna";
+                      $respuesta = $con -> query($sql);
+                      $filas = mysqli_num_rows($respuesta);
+                      if($filas > 0)
+                      {
+                          while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
+                        {
+                              echo "<option value=".$result["COM_ID"].">".$result["COM_NOMBRE"]."</option>";
+                          }
+                      }
+                    ?>
+                  </select>
+                </div>
+                <div class="col-xs-4"> 
+                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="1">Eliminar</button>
+                </div>
+                
+              </form>
+            </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box box-success">
+              <div class="box-header with-border">
+                <h3 class="box-title">Modicar</h3>
+              </div>
+              <div class="box-body">
+                <form action="M_agregar_falta.php" method="POST" method="POST" role="form">
+                  <div class="form-group">
+                    <label>Comuna</label>
+                    <select name="comuna" required class="form-control">
+                      <option></option>
+                      <?php
+                        $con = new mysqli($servidor, $usuario, $password, $bd);
+                        $con->set_charset("utf8");
+                        global $con;
+                        //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
+                        $sql = "SELECT COM_NOMBRE, REG_NOMBRE FROM comuna, region WHERE com_region=reg_id";
+                        $respuesta = $con -> query($sql);
+                        $filas = mysqli_num_rows($respuesta);
+                        if($filas > 0)
+                        {
+                            while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
+                          {
+                                echo "<option value=".$result["COM_ID"].">".$result["COM_NOMBRE"]." ".$result["REG_NOMBRE"]."</option>";
+                            }
+                        }
+                      ?>
+                    </select>
+                  </div>
+                  <div class="col-xs-4"> 
+                  <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="1">Eliminar</button>
+                  </div>
+                  
+                </form>
+              </div>
+            </div>
+
           <!-- /.box -->
     </section>
     <!-- /.content -->
@@ -527,25 +568,25 @@ session_start();
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->
-<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../bootstrap/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="../../plugins/fastclick/fastclick.js"></script>
+<script src="../../../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/app.min.js"></script>
+<script src="../../../dist/js/app.min.js"></script>
 <!-- Sparkline -->
-<script src="../../plugins/sparkline/jquery.sparkline.min.js"></script>
+<script src="../../../plugins/sparkline/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
-<script src="../../plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="../../plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="../../../plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="../../../plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 <!-- SlimScroll 1.3.0 -->
-<script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="../../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- ChartJS 1.0.1 -->
-<script src="../../plugins/chartjs/Chart.min.js"></script>
+<script src="../../../plugins/chartjs/Chart.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../../dist/js/pages/dashboard2.js"></script>
+<script src="../../../dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+<script src="../../../dist/js/demo.js"></script>
 </body>
 </html>

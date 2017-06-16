@@ -185,7 +185,7 @@ session_start();
           </a>
           <ul class="treeview-menu">
             <li><a href="agregar_falta.php"><i class="fa fa-circle-o"></i>Agregar Falta</a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Eliminar Falta</a></li>
+            <li><a href="eliminar_falta.php"><i class="fa fa-circle-o"></i> Eliminar Falta</a></li>
             <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Modificar Falta</a></li>
           </ul>
         </li>
@@ -248,7 +248,7 @@ session_start();
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form action="SQLFALTA.php" method="POST" method="POST" role="form">
+              <form action="M_Eliminar_falta.php" method="POST" method="POST" role="form">
                 <!-- select -->
                 <div class="box-body">
               <table id="example2" class="table table-bordered table-hover">
@@ -268,7 +268,7 @@ session_start();
                 $con = new mysqli($servidor, $usuario, $password, $bd);
                 $con->set_charset("utf8");
                   global $con;
-                  $sql = "SELECT TUFA_ID, USU_NOMBRES, USU_APAT, TTU_NOMBRE, TUR_FECHA, TFA_NOMBRE FROM tur_fal, usuario, turno, falta, tipo_turno, tipo_falta WHERE TUFA_USUARIO=usu_run AND TUFA_TURNO=tur_id AND TUFA_FALTA=FAL_ID AND TUR_ttu=ttu_id AND fal_tipofalta=tfa_id";
+                  $sql = "SELECT TUFA_FALTA, USU_NOMBRES, USU_APAT, TTU_NOMBRE, TUR_FECHA, TFA_NOMBRE FROM tur_fal, usuario, turno, falta, tipo_turno, tipo_falta WHERE TUFA_USUARIO=usu_run AND TUFA_TURNO=tur_id AND TUFA_FALTA=FAL_ID AND TUR_ttu=ttu_id AND fal_tipofalta=tfa_id";
         $respuesta = $con -> query($sql);
         $filas = mysqli_num_rows($respuesta);
                 if($filas > 0)
@@ -282,7 +282,7 @@ session_start();
                           echo "<td>", $result["TTU_NOMBRE"],"</td>";
                           echo "<td>", $result["TUR_FECHA"], "</td> ";
                           echo "<td>", $result["TFA_NOMBRE"],"</td>" ;
-                          echo '<td><input type="checkbox" name="Eliminar[]" value='.$result["TUFA_ID"].'></td>';
+                          echo '<td><input type="checkbox" name="Eliminar[]" value='.$result["TUFA_FALTA"].'></td>';
                           echo "</tr>";
                       }
                 }
@@ -293,7 +293,7 @@ session_start();
             </div>
                 </div>
                 <div class="col-xs-4"> 
-                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="2">Eliminar</button>
+                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value=2 >Eliminar</button>
                 </div>
                 
               </form>
