@@ -247,7 +247,7 @@ session_start();
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form action="M_agregar_falta.php" method="POST" method="POST" role="form">
+              <form action="MTcom.php" method="POST" method="POST" role="form">
                 <!-- select -->
                 <div class="form-group">
                   <label>Comuna</label>
@@ -291,7 +291,7 @@ session_start();
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form action="M_agregar_falta.php" method="POST" method="POST" role="form">
+              <form action="MTcom.php" method="POST" method="POST" role="form">
                 <div class="form-group">
                   <label>Comuna</label>
                   <select name="comuna" required class="form-control">
@@ -315,7 +315,7 @@ session_start();
                   </select>
                 </div>
                 <div class="col-xs-4"> 
-                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="1">Eliminar</button>
+                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="2">Eliminar</button>
                 </div>
                 
               </form>
@@ -327,10 +327,10 @@ session_start();
                 <h3 class="box-title">Modicar</h3>
               </div>
               <div class="box-body">
-                <form action="M_agregar_falta.php" method="POST" method="POST" role="form">
+                <form action="MTcom.php" method="POST" method="POST" role="form">
                   <div class="form-group">
-                    <label>Comuna</label>
-                    <select name="comuna" required class="form-control">
+                    <label>Seleccione la comuna a modificar:</label>
+                    <select required class="form-control">
                       <option></option>
                       <?php
                         $con = new mysqli($servidor, $usuario, $password, $bd);
@@ -349,9 +349,18 @@ session_start();
                         }
                       ?>
                     </select>
+                    <div class="form-group">
+                       <label>Comuna</label>
+                       <input name=comuna type="text" class="form-control" placeholder="Maipú">
+                    </div>
+                    <div class="form-group">
+                    <label>Región</label>
+                    <input name=region type="text" class="form-control" placeholder="">
+                    </div>
+                    
                   </div>
                   <div class="col-xs-4"> 
-                  <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="1">Eliminar</button>
+                  <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="3">Modificar</button>
                   </div>
                   
                 </form>

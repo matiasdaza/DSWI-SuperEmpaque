@@ -50,7 +50,6 @@ session_start();
                 <div class="form-group has-feedback">
                 <label>RUN</label>
                 <input name="run" type="text" class="form-control" placeholder="17567234"> 
-                <span class="glyphicon glyphicon-user form-control-feedback"></span>
               </div>
               <!-- /Agregar run-->
 
@@ -58,56 +57,49 @@ session_start();
               <div class="form-group has-feedback">
                 <label>Nombres</label>
                 <input name="nombres" type="text" class="form-control" placeholder="">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-              </div>
+                </div>
               <!-- /Agregar Nombres-->
 
               <!-- Agregar Apat-->
               <div class="form-group has-feedback">
                 <label>Apellido Paterno</label>
-                <input name="apat" type="email" class="form-control" placeholder="">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-              </div>
+                <input name="apat" type="text" class="form-control" placeholder="">
+                </div>
               <!-- /Agregar Apat-->
 
               <!-- Agregar Amat-->
               <div class="form-group has-feedback">
                 <label>Apellido Materno</label>
-                <input name="amat" type="email" class="form-control" placeholder="">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-              </div>
+                <input name="amat" type="text" class="form-control" placeholder="">
+                </div>
               <!-- /Agregar Amat-->
 
               <!-- Agregar Fecha de nacimiento-->
               <div class="form-group has-feedback">
-                <label>Fecha de nacimiento</label>
-                <input type="email" class="form-control" placeholder="AAAA-MM-DD">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-              </div>
+                <label>Edad</label>
+                <input name="edad" type="text" class="form-control" placeholder="">
+                </div>
               <!-- /Agregar Fecha de nacimiento-->
 
               <!-- Agregar Correo -->
               <div class="form-group has-feedback">
                 <label>Correo</label>
-                <input type="email" class="form-control" placeholder="">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-              </div>
+                <input name="correo" type="text" class="form-control" placeholder="">
+                </div>
               <!-- /Correo-->
 
               <!-- Agregar Contraseña -->
               <div class="form-group has-feedback">
                 <label>Contraseña</label>
-                <input type="email" class="form-control" placeholder="">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-              </div>
+                <input name="pass" type="text" class="form-control" placeholder="">
+                </div>
               <!-- /Contraseña -->
 
               <!-- Agregar Telefono -->
               <div class="form-group has-feedback">
                 <label>Teléfono</label>
-                <input type="email" class="form-control" placeholder="+56982956387">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-              </div>
+                <input name="fono" type="text" class="form-control" placeholder="+56982956387">
+                </div>
               <!-- /Telefono -->
 
               <div class="form-group">
@@ -188,7 +180,7 @@ session_start();
 
                <div class="form-group">
                 <label>Tipo de usuario</label>
-                <select name="gen" required class="form-control">
+                <select name="tusu" required class="form-control">
                   <option></option>
                   <?php
                     $sql = "SELECT * FROM TIPO_USUARIO";
@@ -207,17 +199,17 @@ session_start();
 
               <div class="form-group">
                 <label>Supermercado</label>
-                <select name="gen" required class="form-control">
+                <select name="sup" required class="form-control">
                   <option></option>
                   <?php
-                    $sql = "SELECT emp_nombre, sup_local FROM SUPERMERCADO, EMPRESA WHERE sup_empresa=emp_id;";
+                    $sql = "SELECT sup_id, emp_nombre, sup_local FROM SUPERMERCADO, EMPRESA WHERE sup_empresa=emp_id;";
                     $respuesta = $con -> query($sql);
                     $filas = mysqli_num_rows($respuesta);
                     if($filas > 0)
                     {
                         while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que 
                       { 
-                            echo "<option value=".$result["SUP_ID"].">".$result["emp_nombre"]."-".$result["sup_local"]."</option>";
+                            echo "<option value=".$result["sup_id"].">".$result["emp_nombre"]."-".$result["sup_local"]."</option>";
                         }
                     }
                   ?>
