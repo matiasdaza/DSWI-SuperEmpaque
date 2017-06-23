@@ -33,7 +33,7 @@ session_start();
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="../index2.html"><b>¡Súper Empaque!</b></a>
+    <a href="../Vistas_usuarios/coordinador.php"><b>¡Súper Empaque!</b></a>
   </div>
 
   <section class="content">

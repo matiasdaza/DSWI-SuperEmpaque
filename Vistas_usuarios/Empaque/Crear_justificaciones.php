@@ -1,5 +1,5 @@
 <?php 
-include ('../conexion/conexion.php');
+include ('../../conexion/conexion.php');
 session_start();
 ?>
 
@@ -12,18 +12,18 @@ session_start();
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- jvectormap -->
-  <link rel="stylesheet" href="../plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+  <link rel="stylesheet" href="../../plugins/jvectormap/jquery-jvectormap-1.2.2.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,7 +38,7 @@ session_start();
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="coordinador.php" class="logo">
+    <a href="../coordinador.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>E</span>
       <!-- logo for regular state and mobile devices -->
@@ -99,7 +99,7 @@ session_start();
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../imagenes/logo.jpg" class="user-image" alt="User Image">
+              <img src="../../imagenes/logo.jpg" class="user-image" alt="User Image">
               <?php
               if(isset($_SESSION['USUARIO'])){
                 echo "<span>".$_SESSION['USUARIO']['USU_NOMBRES']."</span>";
@@ -109,10 +109,11 @@ session_start();
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../imagenes/logo.jpg" class="img-circle" alt="User Image">
+                <img src="../../imagenes/logo.jpg" class="img-circle" alt="User Image">
                 <?php
                     $tipousuario="Coordinador";
                     echo "<p>".$_SESSION['USUARIO']['USU_NOMBRES']." - ".$tipousuario."</p>";
+                    $usuariorun=$_SESSION['USUARIO']['USU_RUN'];
                 ?>
               </li>
               <!-- Menu Footer-->
@@ -121,7 +122,7 @@ session_start();
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="../registro_usuario/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../../registro_usuario/logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -142,7 +143,7 @@ session_start();
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="../imagenes/logo.jpg" class="img-circle" alt="User Image">
+          <img src="../../imagenes/logo.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <?php
@@ -166,30 +167,20 @@ session_start();
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
-        <li class="header">MAIN NAVIGATION</li>
+        <li class="header">Menú</li>
         <li class="active treeview">
           <a href="Coordinador.php">
             <i class="fa fa-home"></i> <span>Home</span> <!-- La class de aquí es para el icono -->
-            <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
-            <!-- <i class="fa fa-angle-left pull-right"></i>-->
-            <!--</span>-->
           </a>
         </li>
+        <!-- Menú faltas -->
         <li class="treeview">
-          <a href="#">
+          <a href="mis_faltas.php">
             <i class="fa fa-exclamation"></i>
-            <span>Faltas</span>
-            <span class="pull-right-container">
-              <span class="fa fa-angle-left pull-right"></span>
-            </span>
+            <span>Mis faltas</span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="coordinador/agregar_falta.php"><i class="fa fa-circle-o"></i>Agregar Falta</a></li>
-            <li><a href="coordinador/Eliminar_falta.php"><i class="fa fa-circle-o"></i> Eliminar Falta</a></li>
-            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Modificar Falta</a></li>
-          </ul>
         </li>
-        <li>
+        <!-- Menú Justificaciones -->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pencil-square-o"></i>
@@ -199,33 +190,12 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i>Estado de justificaciones</a></li>
+            <li><a href="mis_justificaciones.php"><i class="fa fa-circle-o"></i>Mis justificaciones</a></li>
+            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i>Enviar justificaciones</a></li>
           </ul>
         </li>
+
         <li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-database"></i>
-            <span>Mantención de tablas</span>
-            <span class="pull-right-container">
-              <span class="fa fa-angle-left pull-right"></span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="coordinador/Tablas_basicas/Tcom.php"><i class="fa fa-circle-o"></i>Tabla Comuna</a></li>
-            <li><a href="coordinador/Tablas_basicas/Treg.php"><i class="fa fa-circle-o"></i>Tabla Región</a></li>
-            <li><a href="coordinador/Tablas_basicas/Tgen.php"><i class="fa fa-circle-o"></i>Tabla Género</a></li>
-            <li><a href="coordinador/Tablas_basicas/Test.php"><i class="fa fa-circle-o"></i>Tabla Estado</a></li>
-            <li><a href="coordinador/Tablas_basicas/TtfHa.php"><i class="fa fa-circle-o"></i>Tabla Tipo de falta</a></li>
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i>Tabla Tipo de usuario</a></li>
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i>Tabla Tipo de turno</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="../Registro_usuario/registro.php">
-            <i class="fa fa-user-plus"></i> <span>Registrar Usuarios</span> <!-- La class de aquí es para el icono -->
-          </a>
-        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -234,92 +204,82 @@ session_start();
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <!--<section class="content-header">
-      <a class="btn btn-app">
-                <i class="fa fa-edit"></i> Edit
-              </a>
-    </section>-->
     <section class="content-header">
       <h1>
-        Reportes
-        <small>fecha</small>
+        Mis justificaciones
+        <small></small>
       </h1>
-      <a href="../pdf/ReporteGlobal.php" class="btn">
-        <i  class="fa fa-download"></i> Descargar
-      </a>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Mis justificaciones</li>
       </ol>
     </section>
-
-   <?php
-      $con = new mysqli($servidor, $usuario, $password, $bd);
-      $con->set_charset("utf8");
-        global $con;
-        $sql = "SELECT TUFA_FECHA, ttu_nombre, emp_nombre, sup_local, usu_run, USU_NOMBRES, usu_apat, usu_amat, tfa_nombre, tfa_valor,  est_tipo FROM tur_fal, usuario, empresa, supermercado, falta, tipo_falta, turno, tipo_turno, estado WHERE est_id!=2 and tufa_usuario=usu_run and TUFA_TURNO=tur_id and TUFA_FALTA=fal_id and fal_tipofalta=tfa_id and usu_supermerc=sup_id and sup_empresa=emp_id and tur_ttu=ttu_id and fal_estado=est_id;
-    ";
-        $respuesta = $con -> query($sql);
-        $filas = mysqli_num_rows($respuesta);
-    ?>
     <!-- Main content -->
     <section class="content">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Reportes globales</h3>
+      <!-- general form elements disabled -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Estado de justificaciones</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example2" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>Fecha</th>
-                  <th>Turno</th>
-                  <th>Empresa</th>
-                  <th>Local</th>
-                  <th>Run</th>
-                  <th>Nombres</th>
-                  <th>Apellido Paterno</th>
-                  <th>Apellido Materno</th>
-                  <th>Falta</th>
-                  <th>Puntaje</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <?php 
-                if($filas > 0)
-                  {
-                      while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
-                    {
-                      
-                          echo "<tr>";
-                          echo "<td>", $result["TUFA_FECHA"], "</td>";
-                          echo "<td>", $result["ttu_nombre"],"</td>";
-                          echo "<td>", $result["emp_nombre"], "</td> ";
-                          echo "<td>", $result["sup_local"],"</td>" ;
-                          echo "<td>", $result["usu_run"],"</td>" ;
-                          echo "<td>", $result["USU_NOMBRES"],"</td>" ;
-                          echo "<td>", $result["usu_apat"],"</td>" ;
-                          echo "<td>", $result["usu_amat"],"</td>" ;
-                          echo "<td>", $result["tfa_nombre"],"</td>" ;
-                          echo "<td>", $result["tfa_valor"],"</td>" ;
-                          echo "</tr>";
+              <form action="prueba.php" method="POST" method="POST" role="form">
+                <!-- select -->
+                <div class="form-group">
+                  <label>Faltas cometidas:</label>
+                  <select name="falta" required class="form-control">
+                    <option></option>
+                    <?php
+                      $con = new mysqli($servidor, $usuario, $password, $bd);
+                      $con->set_charset("utf8");
+                      global $con;
+                      //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
+                      $sql = "SELECT tufa_falta, tufa_fecha, usu_run, tfa_nombre FROM tur_fal, usuario, falta, tipo_falta WHERE tufa_usuario = $usuariorun and TUFA_USUARIO = usu_run and tufa_falta = fal_id and fal_tipofalta = tfa_id;";
+                      $respuesta = $con -> query($sql);
+                      $filas = mysqli_num_rows($respuesta);
+                      echo "<p>".$result["jus_falta"]."</p>";
+                      if($filas > 0)
+                      {
+                          while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
+                        { 
+                              
+                              echo "<option value=".$result["tufa_falta"].">".$result["tufa_fecha"]." - ".$result["usu_run"]." - ".$result["tfa_nombre"]."</option>";
+                          }
                       }
-                }
-                ?>
+                    ?>
+                  </select>
+                </div>
                 
-                </tbody>
-              </table>
+                </div>
+
+                               
+                <div class="box box-primary">
+                  <div class="box-header with-border">
+                    <i class="fa fa-pencil-square-o"></i>
+
+                    <h3 class="box-title">Justificar</h3><small> Máximo 300 caracteres</small>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                   <div class="row">
+                    <div class="col-sm-9"> 
+                      <textarea cols="100" rows="5" name="comentario" MAXLENGTH="300""></textarea> 
+                    </div>
+                    
+                    <div class="col-sm-2"> 
+                      <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="1">Enviar</button>
+                    </div> 
+                  </div> 
+                                 
+                  </div>
+                  <!-- /.box-body -->
+                </div>
+              
+              </form>
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>
@@ -529,25 +489,26 @@ session_start();
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->
-<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="../plugins/fastclick/fastclick.js"></script>
+<script src="../../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="../dist/js/app.min.js"></script>
+<script src="../../dist/js/app.min.js"></script>
 <!-- Sparkline -->
-<script src="../plugins/sparkline/jquery.sparkline.min.js"></script>
+<script src="../../plugins/sparkline/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
-<script src="../plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="../plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="../../plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="../../plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 <!-- SlimScroll 1.3.0 -->
-<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- ChartJS 1.0.1 -->
-<script src="../plugins/chartjs/Chart.min.js"></script>
+<script src="../../plugins/chartjs/Chart.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../dist/js/pages/dashboard2.js"></script>
+<script src="../../dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
+<script src="../../dist/js/demo.js"></script>
 </body>
 </html>
+24

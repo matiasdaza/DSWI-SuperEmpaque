@@ -38,7 +38,7 @@ session_start();
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="../index2.html" class="logo">
+    <a href="../../empaque.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>E</span>
       <!-- logo for regular state and mobile devices -->
@@ -99,7 +99,7 @@ session_start();
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../imagenes/logo.jpg" class="user-image" alt="User Image">
+              <img src="../../imagenes/logo.jpg" class="user-image" alt="User Image">
               <?php
               if(isset($_SESSION['USUARIO'])){
                 echo "<span>".$_SESSION['USUARIO']['USU_NOMBRES']."</span>";
@@ -109,7 +109,7 @@ session_start();
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../imagenes/logo.jpg" class="img-circle" alt="User Image">
+                <img src="../../imagenes/logo.jpg" class="img-circle" alt="User Image">
                 <?php
                     $tipousuario="Encargado";
                     echo "<p>".$_SESSION['USUARIO']['USU_NOMBRES']." - ".$tipousuario."</p>";
@@ -143,7 +143,7 @@ session_start();
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="../imagenes/logo.jpg" class="img-circle" alt="User Image">
+          <img src="../../imagenes/logo.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <?php
@@ -258,13 +258,13 @@ session_start();
               <h3 class="box-title">Faltas personales</h3>
 
               <div class="box-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
+                <!--<div class="input-group input-group-sm" style="width: 150px;">
                   <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
 
                   <div class="input-group-btn">
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                   </div>
-                </div>
+                </div>-->
               </div>
             </div>
             <!-- /.box-header -->
