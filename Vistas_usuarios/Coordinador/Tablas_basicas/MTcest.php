@@ -43,7 +43,7 @@ if (isset($_POST['enviar']))
         }
     }
     if($_POST['enviar']==3){ // 1 para Agregar falta
-       $sql="update CASAESTUDIOS SET cest_nombre='$cest' WHERE cest_id=$cestid";
+       $sql="UPDATE CASAESTUDIOS SET cest_nombre='$cest' WHERE cest_id=$cestid";
        if($con -> query($sql)) //$con -> query($sql) = True or false
         {
             //echo '<h1>La falta se ha ingresado correctamente</h1>'; 

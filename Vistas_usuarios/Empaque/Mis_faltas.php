@@ -163,6 +163,9 @@ session_start();
           }
         ?>
       </h1>
+      <a href="../../pdf/ReportePersonal.php" class="btn">
+        <i  class="fa fa-download"></i> Descargar
+      </a>
       <ol class="breadcrumb">
         <li><a href="../empaque.php"><i class="fa fa-home"></i> Home</a></li>
         <li class="active">Mis Faltas</li>
@@ -180,8 +183,8 @@ session_start();
             <div class="box-body">
                 <?php
                   $sql = "SELECT SUM(tfa_valor)
-                          FROM tur_fal, falta, tipo_falta 
-                          WHERE tufa_usuario=$usuariorun and tufa_falta=fal_id and fal_estado!=2 and fal_tipofalta = tfa_id;";  
+                          FROM tur_fal, falta, tipo_falta, turno
+                          WHERE tufa_usuario=$usuariorun and tufa_falta=fal_id and fal_estado!=2 and fal_tipofalta = tfa_id and tufa_turno=tur_id and'$fecha' BETWEEN TUR_PINICIO and TUR_PTERMINO;";  
                   $respuesta = $con -> query($sql);
 
                   if($row = $respuesta -> fetch_assoc()){
@@ -245,7 +248,7 @@ session_start();
         global $con;
         $sql = "SELECT TUFA_FECHA, ttu_nombre, emp_nombre, sup_local, usu_run, USU_NOMBRES, usu_apat, usu_amat, tfa_nombre, tfa_valor,  est_tipo
                 FROM tur_fal, usuario, empresa, supermercado, falta, tipo_falta, turno, tipo_turno, estado
-                WHERE tufa_usuario=usu_run and usu_run=$usuariorun and TUFA_TURNO=tur_id and TUFA_FALTA=fal_id and fal_tipofalta=tfa_id and usu_supermerc=sup_id and sup_empresa=emp_id and tur_ttu=ttu_id and fal_estado=est_id;
+                WHERE tufa_usuario=usu_run and usu_run=$usuariorun and TUFA_TURNO=tur_id and TUFA_FALTA=fal_id and fal_tipofalta=tfa_id and usu_supermerc=sup_id and sup_empresa=emp_id and tur_ttu=ttu_id and fal_estado=est_id and '$fecha' BETWEEN TUR_PINICIO and TUR_PTERMINO;
 
     ";
         $respuesta = $con -> query($sql);

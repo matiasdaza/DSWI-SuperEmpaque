@@ -15,12 +15,18 @@
 		$_SESSION['USUARIO'] = $result;
 		if(isset($_SESSION['USUARIO'])){
             if($_SESSION['USUARIO']['USU_TIPOUSUARIO']==1){
+            	session_start();
+              //$_SESSION['USUARIO']=$nombreUsuario;
               header('location: ../vistas_usuarios/coordinador.php');
             }
             if($_SESSION['USUARIO']['USU_TIPOUSUARIO']==2){
+              session_start();
+              //$_SESSION['USUARIO']=$nombreUsuario;
               header('location: ../vistas_usuarios/encargado.php');
             }
             if($_SESSION['USUARIO']['USU_TIPOUSUARIO']==3){
+              session_start();
+              //$_SESSION['USUARIO']=$nombreUsuario;
               header('location: ../vistas_usuarios/empaque.php');
             }
         }

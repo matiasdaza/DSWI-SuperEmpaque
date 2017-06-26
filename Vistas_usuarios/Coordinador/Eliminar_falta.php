@@ -158,13 +158,13 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Tablas_basicas/Tcom.php"><i class="fa fa-circle-o"></i>Tabla Comuna</a></li>
-            <li><a href="Tablas_basicas/Treg.php"><i class="fa fa-circle-o"></i>Tabla Región</a></li>
-            <li><a href="Tablas_basicas/Tgen.php"><i class="fa fa-circle-o"></i>Tabla Género</a></li>
             <li><a href="Tablas_basicas/Test.php"><i class="fa fa-circle-o"></i>Tabla Estado</a></li>
+            <li><a href="Tablas_basicas/Tcest.php"><i class="fa fa-circle-o"></i>Tabla Casa de estudio</a></li>
+            <li><a href="Tablas_basicas/Tsit.php"><i class="fa fa-circle-o"></i>Tabla Situación</a></li>
             <li><a href="Tablas_basicas/Ttfa.php"><i class="fa fa-circle-o"></i>Tabla Tipo de falta</a></li>
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i>Tabla Tipo de usuario</a></li>
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i>Tabla Tipo de turno</a></li>
+            <li><a href="Tablas_basicas/Ttjus.php"><i class="fa fa-circle-o"></i>Tabla Tipo de justificación</a></li>
+            <li><a href="Tablas_basicas/Tttu.php"><i class="fa fa-circle-o"></i>Tabla Tipo de turno</a></li>
+            <li><a href="Tablas_basicas/Ttusu.php"><i class="fa fa-circle-o"></i>Tabla Tipo de usuario</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -180,6 +180,13 @@ session_start();
             <i class="fa fa-user-plus"></i> <span>Registrar Usuarios</span> <!-- La class de aquí es para el icono -->
           </a>
         </li>
+        <li class="treeview">
+          <a href="Modificar_usuarios.php">
+            <i class="fa fa-wrench"></i> <span>Modificar Usuarios</span> <!-- La class de aquí es para el icono -->
+            <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
+            <!-- <i class="fa fa-angle-left pull-right"></i>-->
+            <!--</span>-->
+          </a>
       </ul>
     </section>
     <!-- /.sidebar -->

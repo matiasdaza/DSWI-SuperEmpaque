@@ -1,6 +1,9 @@
 <?php 
 include ('../conexion/conexion.php');
 session_start();
+if(!isset($_SESSION["USUARIO"])){
+  header('location: ../registro_usuario/login.html');
+}
 ?>
 
 <!DOCTYPE html>
@@ -183,7 +186,18 @@ session_start();
             <i class="fa fa-user-plus"></i> <span>Registrar Usuarios</span> <!-- La class de aquí es para el icono -->
           </a>
         </li>
+
+        <li class="treeview">
+          <a href="coordinador/Modificar_usuarios.php">
+            <i class="fa fa-wrench"></i> <span>Modificar Usuarios</span> <!-- La class de aquí es para el icono -->
+            <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
+            <!-- <i class="fa fa-angle-left pull-right"></i>-->
+            <!--</span>-->
+          </a>
+        </li>
+
       </ul>
+
     </section>
     <!-- /.sidebar -->
   </aside>

@@ -180,6 +180,13 @@ session_start();
             <i class="fa fa-user-plus"></i> <span>Registrar Usuarios</span> <!-- La class de aquí es para el icono -->
           </a>
         </li>
+        <li class="treeview">
+          <a href="../Modificar_usuarios.php">
+            <i class="fa fa-wrench"></i> <span>Modificar Usuarios</span> <!-- La class de aquí es para el icono -->
+            <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
+            <!-- <i class="fa fa-angle-left pull-right"></i>-->
+            <!--</span>-->
+          </a>
       </ul>
     </section>
     <!-- /.sidebar -->

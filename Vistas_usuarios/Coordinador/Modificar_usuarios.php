@@ -32,7 +32,7 @@ session_start();
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
@@ -158,13 +158,13 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Tablas_basicas/Tcom.php"><i class="fa fa-circle-o"></i>Tabla Comuna</a></li>
-            <li><a href="Tablas_basicas/Treg.php"><i class="fa fa-circle-o"></i>Tabla Región</a></li>
-            <li><a href="Tablas_basicas/Tgen.php"><i class="fa fa-circle-o"></i>Tabla Género</a></li>
-            <li><a href="Tablas_basicas/Test.php"><i class="fa fa-circle-o"></i>Tabla Estado</a></li>
+            <<li><a href="Tablas_basicas/Test.php"><i class="fa fa-circle-o"></i>Tabla Estado</a></li>
+            <li><a href="Tablas_basicas/Tcest.php"><i class="fa fa-circle-o"></i>Tabla Casa de estudio</a></li>
+            <li><a href="Tablas_basicas/Tsit.php"><i class="fa fa-circle-o"></i>Tabla Situación</a></li>
             <li><a href="Tablas_basicas/Ttfa.php"><i class="fa fa-circle-o"></i>Tabla Tipo de falta</a></li>
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i>Tabla Tipo de usuario</a></li>
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i>Tabla Tipo de turno</a></li>
+            <li><a href="Tablas_basicas/Ttjus.php"><i class="fa fa-circle-o"></i>Tabla Tipo de justificación</a></li>
+            <li><a href="Tablas_basicas/Tttu.php"><i class="fa fa-circle-o"></i>Tabla Tipo de turno</a></li>
+            <li><a href="Tablas_basicas/Ttusu.php"><i class="fa fa-circle-o"></i>Tabla Tipo de usuario</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -180,6 +180,13 @@ session_start();
             <i class="fa fa-user-plus"></i> <span>Registrar Usuarios</span> <!-- La class de aquí es para el icono -->
           </a>
         </li>
+         <li class="treeview">
+          <a href="Modificar_usuarios.php">
+            <i class="fa fa-wrench"></i> <span>Modificar Usuarios</span> <!-- La class de aquí es para el icono -->
+            <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
+            <!-- <i class="fa fa-angle-left pull-right"></i>-->
+            <!--</span>-->
+          </a>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -190,25 +197,24 @@ session_start();
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-         Faltas
-        <small>de empaques</small>
+         Usuarios
+        <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="../coordinador.php"><i class="fa fa-home"></i> Home</a></li>
-        <li><a href="#">Faltas</a></li>
-        <li class="active">Eliminar faltas</li>
+        <li class="active">Modificar Usuarios</li>
       </ol>
     </section>
     <!-- Main content -->
     <section class="content">
       <!-- general form elements disabled -->
-          <div class="box box-danger">
+          <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Falta</h3>
+              <h3 class="box-title">Seleccione el usuario que desea modificar</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form action="M_Eliminar_falta.php" method="POST" method="POST" role="form">
+              <form action="MM_usuarios.php" method="POST" method="POST" role="form">
                 <!-- select -->
                 <div class="box-body">
               <table id="example2" class="table table-bordered table-hover">
@@ -222,6 +228,7 @@ session_start();
                   <th>Correo</th>
                   <th>Teléfono</th>
                   <th>C. Estudios</th>
+                  <th>Situación</th>
                   <th>Género</th>
                   <th>Comuna</th>
                   <th>Tipo Usuario</th>
@@ -233,7 +240,7 @@ session_start();
                 $con = new mysqli($servidor, $usuario, $password, $bd);
                 $con->set_charset("utf8");
                   global $con;
-                  $sql = "SELECT USU_RUN, USU_NOMBRES, USU_APAT, USU_AMAT, USU_EDAD, USU_CORREO, USU_TELEFONO, CEST_NOMBRE, GEN_NOMBRE, SIT_NOMBRE, COM_NOMBRE, TUS_TIPO FROM USUARIO, CASAESTUDIOS, SITUACION, COMUNA, TIPO_USUARIO WHERE USU_CASAESTUDIOS=CEST_ID AND USU_GENERO = GEN_ID AND USU_SITUACION=SIT_ID AND USU_COMUNA=COM_ID AND USU_TIPOUSUARIO=TUS_ID";
+                  $sql = "SELECT USU_RUN, USU_NOMBRES, USU_APAT, USU_AMAT, USU_EDAD, USU_CORREO, USU_TELEFONO, CEST_NOMBRE, GEN_NOMBRE, SIT_NOMBRE, COM_NOMBRE, TUS_TIPO FROM USUARIO, CASAESTUDIOS, SITUACION, COMUNA, TIPO_USUARIO, GENERO WHERE USU_CASAESTUDIO=CEST_ID AND USU_GENERO = GEN_ID AND USU_SITUACION=SIT_ID AND USU_COMUNA=COM_ID AND USU_TIPOUSUARIO=TUS_ID";
                   $respuesta = $con -> query($sql);
                   $filas = mysqli_num_rows($respuesta);
                 if($filas > 0)
@@ -250,11 +257,11 @@ session_start();
                           echo "<td>", $result["USU_CORREO"], "</td> ";
                           echo "<td>", $result["USU_TELEFONO"],"</td>" ;
                           echo "<td>", $result["CEST_NOMBRE"], "</td>";
-                          echo "<td>", $result["GEN_NOMBRE"], "</td>";
                           echo "<td>", $result["SIT_NOMBRE"], "</td>";
+                          echo "<td>", $result["GEN_NOMBRE"], "</td>";
                           echo "<td>", $result["COM_NOMBRE"], "</td>";
                           echo "<td>", $result["TUS_TIPO"], "</td>";
-                          echo '<td><input type="checkbox" name="Eliminar[]" value='.$result["USU_RUN"].'></td>';
+                          echo '<td><input type="checkbox" name="usuid" value='.$result["USU_RUN"].'></td>';
                           echo "</tr>";
                       }
                 }
@@ -262,13 +269,188 @@ session_start();
                 
                 </tbody>
               </table>
-            </div>
+              <div class="box-body">
+              <form action="Agregar_usuario.php" method="POST" role="form">
+                <!-- select -->
+
+                <div class="form-group has-feedback">
+                <label>RUN</label>
+                <input name="run" type="text" class="form-control" placeholder="17567234"> 
+              </div>
+              <!-- /Agregar run-->
+
+              <!-- Agregar Nombres-->
+              <div class="form-group has-feedback">
+                <label>Nombres</label>
+                <input name="nombres" type="text" class="form-control" placeholder="">
+                </div>
+              <!-- /Agregar Nombres-->
+
+              <!-- Agregar Apat-->
+              <div class="form-group has-feedback">
+                <label>Apellido Paterno</label>
+                <input name="apat" type="text" class="form-control" placeholder="">
+                </div>
+              <!-- /Agregar Apat-->
+
+              <!-- Agregar Amat-->
+              <div class="form-group has-feedback">
+                <label>Apellido Materno</label>
+                <input name="amat" type="text" class="form-control" placeholder="">
+                </div>
+              <!-- /Agregar Amat-->
+
+              <!-- Agregar Fecha de nacimiento-->
+              <div class="form-group has-feedback">
+                <label>Edad</label>
+                <input name="edad" type="text" class="form-control" placeholder="">
+                </div>
+              <!-- /Agregar Fecha de nacimiento-->
+
+              <!-- Agregar Correo -->
+              <div class="form-group has-feedback">
+                <label>Correo</label>
+                <input name="correo" type="text" class="form-control" placeholder="">
+                </div>
+              <!-- /Correo-->
+
+              <!-- Agregar Telefono -->
+              <div class="form-group has-feedback">
+                <label>Teléfono</label>
+                <input name="fono" type="text" class="form-control" placeholder="+56982956387">
+                </div>
+              <!-- /Telefono -->
+
+              <div class="form-group">
+                <label>Casa de estudios</label>
+                <select name="cest" required class="form-control">
+                  <option></option>
+                  <?php
+                    $sql = "SELECT * FROM CASAESTUDIOS";
+                    $respuesta = $con -> query($sql);
+                    $filas = mysqli_num_rows($respuesta);
+                    if($filas > 0)
+                    {
+                        while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que 
+                      { 
+                            echo "<option value=".$result["CEST_ID"].">".$result["CEST_NOMBRE"]."</option>";
+                        }
+                    }
+                  ?>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Situación académica</label>
+                <select name="sit" required class="form-control">
+                  <option></option>
+                  <?php
+                    $sql = "SELECT * FROM SITUACION";
+                    $respuesta = $con -> query($sql);
+                    $filas = mysqli_num_rows($respuesta);
+                    if($filas > 0)
+                    {
+                        while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que 
+                      { 
+                            echo "<option value=".$result["SIT_ID"].">".$result["SIT_NOMBRE"]."</option>";
+                        }
+                    }
+                  ?>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Género</label>
+                <select name="gen" required class="form-control">
+                  <option></option>
+                  <?php
+                    $sql = "SELECT * FROM GENERO";
+                    $respuesta = $con -> query($sql);
+                    $filas = mysqli_num_rows($respuesta);
+                    if($filas > 0)
+                    {
+                        while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que 
+                      { 
+                            echo "<option value=".$result["GEN_ID"].">".$result["GEN_NOMBRE"]."</option>";
+                        }
+                    }
+                  ?>
+                </select>
+              </div>
+
+               <div class="form-group">
+                <label>Comuna</label>
+                <select name="com" required class="form-control">
+                  <option></option>
+                  <?php
+                    $sql = "SELECT * FROM COMUNA";
+                    $respuesta = $con -> query($sql);
+                    $filas = mysqli_num_rows($respuesta);
+                    if($filas > 0)
+                    {
+                        while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que 
+                      { 
+                            echo "<option value=".$result["COM_ID"].">".$result["COM_NOMBRE"]."</option>";
+                        }
+                    }
+                  ?>
+                </select>
+              </div>
+
+               <div class="form-group">
+                <label>Tipo de usuario</label>
+                <select name="tusu" required class="form-control">
+                  <option></option>
+                  <?php
+                    $sql = "SELECT * FROM TIPO_USUARIO";
+                    $respuesta = $con -> query($sql);
+                    $filas = mysqli_num_rows($respuesta);
+                    if($filas > 0)
+                    {
+                        while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que 
+                      { 
+                            echo "<option value=".$result["TUS_ID"].">".$result["TUS_TIPO"]."</option>";
+                        }
+                    }
+                  ?>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Supermercado</label>
+                <select name="sup" required class="form-control">
+                  <option></option>
+                  <?php
+                    $sql = "SELECT sup_id, emp_nombre, sup_local FROM SUPERMERCADO, EMPRESA WHERE sup_empresa=emp_id;";
+                    $respuesta = $con -> query($sql);
+                    $filas = mysqli_num_rows($respuesta);
+                    if($filas > 0)
+                    {
+                        while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que 
+                      { 
+                            echo "<option value=".$result["sup_id"].">".$result["emp_nombre"]."-".$result["sup_local"]."</option>";
+                        }
+                    }
+                  ?>
+                </select>
+              </div>
+              
+
+
+                
+                <div class="form-group">
                 </div>
                 <div class="col-xs-4"> 
-                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value=2 >Eliminar</button>
+                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat">Registrar</button>
                 </div>
                 
               </form>
+            </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+                
+          </form>
             </div>
             <!-- /.box-body -->
           </div>

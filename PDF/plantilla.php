@@ -9,7 +9,7 @@
 			$this-> SetFont('Arial','B', 15);
 			$this->Cell(15); //esto es el mismo espacio que la imagen para que no se solape.
 			$this->Ln(5);
-			$this->Cell(180, 10, 'Reporte de faltas gloables', 0, 0, 'C');
+			$this->Cell(180, 10, 'Reporte de faltas', 0, 0, 'C');
 		}
 
 		function Footer()
