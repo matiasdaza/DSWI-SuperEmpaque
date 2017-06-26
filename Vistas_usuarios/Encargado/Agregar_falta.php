@@ -38,7 +38,7 @@ session_start();
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="../empaque.php" class="logo">
+    <a href="coordinador.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>E</span>
       <!-- logo for regular state and mobile devices -->
@@ -62,7 +62,6 @@ session_start();
               <?php
               if(isset($_SESSION['USUARIO'])){
                 echo "<span>".$_SESSION['USUARIO']['USU_NOMBRES']."</span>";
-                $usuariorun=$_SESSION['USUARIO']['USU_RUN'];
               }
               ?>
             </a>
@@ -93,7 +92,6 @@ session_start();
     </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
-  <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -111,38 +109,41 @@ session_start();
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
-     
-      <!--Menú home -->
+      
+      <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">MENÚ</li>
         <li class="treeview">
-          <a href="../empaque.php">
+          <a href="Coordinador.php">
             <i class="fa fa-home"></i> <span>Home</span> <!-- La class de aquí es para el icono -->
+            <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
+            <!-- <i class="fa fa-angle-left pull-right"></i>-->
+            <!--</span>-->
           </a>
         </li>
-        <!-- Menú faltas -->
-        <li class="treeview">
-          <a href="Mis_faltas.php">
-            <i class="fa fa-exclamation"></i>
-            <span>Mis faltas</span>
-          </a>
-        </li>
-        <!-- Menú Justificaciones -->
         <li class="active treeview">
           <a href="#">
-            <i class="fa fa-pencil-square-o"></i>
-            <span>Justificaciones</span>
+            <i class="fa fa-exclamation"></i>
+            <span>Faltas</span>
             <span class="pull-right-container">
               <span class="fa fa-angle-left pull-right"></span>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="mis_justificaciones.php"><i class="fa fa-circle-o"></i>Mis justificaciones</a></li>
-            <li><a href="crear_justificaciones.php"><i class="fa fa-circle-o"></i>Crear justificaciones</a></li>
+            <li><a href="agregar_falta.php"><i class="fa fa-circle-o"></i>Agregar Falta</a></li>
+            <li><a href="Eliminar_falta.php"><i class="fa fa-circle-o"></i> Eliminar Falta</a></li>
+            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Modificar Falta</a></li>
           </ul>
         </li>
-
         <li>
+        <li class="treeview">
+          <a href="Crear_turnos.php">
+            <i class="fa fa-calendar-check-o "></i> <span>Crear turnos</span> <!-- La class de aquí es para el icono -->
+            <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
+            <!-- <i class="fa fa-angle-left pull-right"></i>-->
+            <!--</span>-->
+          </a>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -153,12 +154,13 @@ session_start();
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Mis justificaciones
-        <small></small>
+        Agregar Faltas
+        <small>de empaques</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-        <li class="active">Crear justificaciones</li>
+        <li><a href="#">Faltas</a></li>
+        <li class="active">Agregar faltas</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -166,61 +168,89 @@ session_start();
       <!-- general form elements disabled -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Estado de justificaciones</h3>
+              <h3 class="box-title">Falta</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form action="prueba.php" method="POST" method="POST" role="form">
+              <form action="M_agregar_falta.php" method="POST" method="POST" role="form">
                 <!-- select -->
                 <div class="form-group">
-                  <label>Faltas cometidas (No justificadas):</label>
-                  <select name="falta" required class="form-control">
+                  <label>Usuario</label>
+                  <select name="usuario" required class="form-control">
                     <option></option>
                     <?php
                       $con = new mysqli($servidor, $usuario, $password, $bd);
                       $con->set_charset("utf8");
                       global $con;
                       //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
-                      $sql = "SELECT tufa_falta, tufa_fecha, usu_run, tfa_nombre FROM tur_fal, usuario, falta, tipo_falta WHERE tufa_usuario = $usuariorun and TUFA_USUARIO = usu_run and tufa_falta = fal_id and fal_tipofalta = tfa_id and fal_estado = 1;";
+                      $sql = "SELECT * FROM usuario";
                       $respuesta = $con -> query($sql);
                       $filas = mysqli_num_rows($respuesta);
                       if($filas > 0)
                       {
                           while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
                         { 
-                              
-                              echo "<option value=".$result["tufa_falta"].">".$result["tufa_fecha"]." - ".$result["usu_run"]." - ".$result["tfa_nombre"]."</option>";
+                              echo "<option value=".$result["USU_RUN"].">".$result["USU_NOMBRES"], " ", $result["USU_APAT"], "</option>";
                           }
                       }
                     ?>
                   </select>
                 </div>
+                <div class="form-group">
+                  <label>Turno</label>
+                  <select name="turno" required class="form-control">
+                    <option></option>
+                    <?php
+                      $fecha=date("Y")."-".date("m")."-".date("d");
+                      $con = new mysqli($servidor, $usuario, $password, $bd);
+                      $con->set_charset("utf8");
+                      global $con;
+                      //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
+                      $sql = "SELECT TUR_ID, TTU_NOMBRE ,TUR_FECHA  FROM turno, tipo_turno WHERE TUR_TTU=TTU_ID and '$fecha' BETWEEN TUR_PINICIO and TUR_PTERMINO";
+                      $respuesta = $con -> query($sql);
+                      $filas = mysqli_num_rows($respuesta);
+                      if($filas > 0)
+                      {
+                          while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
+                        {
+                              echo "<option value=".$result["TUR_ID"].">".$result["TTU_NOMBRE"], " ", $result["TUR_FECHA"], "</option>";
+                          }
+                      }
+                    ?>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Falta</label>
+                  <select name="tfal" required class="form-control">
+                    <option></option>
+                    <?php
+                      $con = new mysqli($servidor, $usuario, $password, $bd);
+                      $con->set_charset("utf8");
+                      global $con;
+                      //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
+                      $sql = "SELECT * FROM tipo_falta";
+                      $respuesta = $con -> query($sql);
+                      $filas = mysqli_num_rows($respuesta);
+                      if($filas > 0)
+                      {
+                          while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
+                        { 
+                              echo "<option value=".$result["TFA_ID"].">".$result["TFA_NOMBRE"]."</option>";
+                          }
+                      }
+                    ?>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Fecha de ingreso de la falta</label>
+                  <input type="text" class="form-control" placeholder=<?php $fecha=date("Y")."-".date("m")."-".date("d"); //Fecha del día donde se ingresa la falta
+                      echo $fecha;
+                ?> disabled>
+                </div>
+                <div class="col-xs-4"> 
+                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="1">Agregar</button>
+                </div>
                 
-                </div>
-
-                               
-                <div class="box box-primary">
-                  <div class="box-header with-border">
-                    <i class="fa fa-pencil-square-o"></i>
-
-                    <h3 class="box-title">Justificar</h3><small> Máximo 300 caracteres</small>
-                  </div>
-                  <!-- /.box-header -->
-                  <div class="box-body">
-                   <div class="row">
-                    <div class="col-sm-9"> 
-                      <textarea cols="100" rows="5" name="comentario" MAXLENGTH="300""></textarea> 
-                    </div>
-                    
-                    <div class="col-sm-2"> 
-                      <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="1">Enviar</button>
-                    </div> 
-                  </div> 
-                                 
-                  </div>
-                  <!-- /.box-body -->
-                </div>
-              
               </form>
             </div>
             <!-- /.box-body -->
@@ -230,6 +260,7 @@ session_start();
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
   
 
   
@@ -245,7 +276,7 @@ session_start();
 <!-- Bootstrap 3.3.6 -->
 <script src="../../bootstrap/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="../plugins/fastclick/fastclick.js"></script>
+<script src="../../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/app.min.js"></script>
 <!-- Sparkline -->

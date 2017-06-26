@@ -1,5 +1,5 @@
 <?php 
-include ('../../conexion/conexion.php');
+include ('../../../conexion/conexion.php');
 session_start();
 ?>
 
@@ -12,18 +12,18 @@ session_start();
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- jvectormap -->
-  <link rel="stylesheet" href="../../plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+  <link rel="stylesheet" href="../../../plugins/jvectormap/jquery-jvectormap-1.2.2.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../../../dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../../../dist/css/skins/_all-skins.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +58,7 @@ session_start();
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../../imagenes/logo.jpg" class="user-image" alt="User Image">
+              <img src="../../../imagenes/logo.jpg" class="user-image" alt="User Image">
               <?php
               if(isset($_SESSION['USUARIO'])){
                 echo "<span>".$_SESSION['USUARIO']['USU_NOMBRES']."</span>";
@@ -68,7 +68,7 @@ session_start();
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../../imagenes/logo.jpg" class="img-circle" alt="User Image">
+                <img src="../../../imagenes/logo.jpg" class="img-circle" alt="User Image">
                 <?php
                     $tipousuario="Coordinador";
                     echo "<p>".$_SESSION['USUARIO']['USU_NOMBRES']." - ".$tipousuario."</p>";
@@ -98,7 +98,7 @@ session_start();
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="../../imagenes/logo.jpg" class="img-circle" alt="User Image">
+          <img src="../../../imagenes/logo.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <?php
@@ -114,7 +114,7 @@ session_start();
       <ul class="sidebar-menu">
         <li class="header">MENÚ</li>
         <li class="treeview">
-          <a href="../Coordinador.php">
+          <a href="../../Coordinador.php">
             <i class="fa fa-home"></i> <span>Home</span> <!-- La class de aquí es para el icono -->
             <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
             <!-- <i class="fa fa-angle-left pull-right"></i>-->
@@ -130,13 +130,13 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="agregar_falta.php"><i class="fa fa-circle-o"></i>Agregar Falta</a></li>
-            <li><a href="Eliminar_falta.php"><i class="fa fa-circle-o"></i> Eliminar Falta</a></li>
+            <li><a href="../agregar_falta.php"><i class="fa fa-circle-o"></i>Agregar Falta</a></li>
+            <li><a href="../Eliminar_falta.php"><i class="fa fa-circle-o"></i> Eliminar Falta</a></li>
             <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Modificar Falta</a></li>
           </ul>
         </li>
         <li>
-        <li class="active treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-pencil-square-o"></i>
             <span>Justificaciones</span>
@@ -145,11 +145,11 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Estado_justificacion.php"><i class="fa fa-circle-o"></i>Estado de justificaciones</a></li>
+            <li><a href="../Estado_justificacion.php"><i class="fa fa-circle-o"></i>Estado de justificaciones</a></li>
           </ul>
         </li>
         <li>
-        <li class="treeview">
+        <li class="active treeview">
           <a href="#">
             <i class="fa fa-database"></i>
             <span>Mantención de tablas</span>
@@ -158,17 +158,17 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Tablas_basicas/Tcom.php"><i class="fa fa-circle-o"></i>Tabla Comuna</a></li>
-            <li><a href="Tablas_basicas/Treg.php"><i class="fa fa-circle-o"></i>Tabla Región</a></li>
-            <li><a href="Tablas_basicas/Tgen.php"><i class="fa fa-circle-o"></i>Tabla Género</a></li>
-            <li><a href="Tablas_basicas/Test.php"><i class="fa fa-circle-o"></i>Tabla Estado</a></li>
-            <li><a href="Tablas_basicas/Ttfa.php"><i class="fa fa-circle-o"></i>Tabla Tipo de falta</a></li>
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i>Tabla Tipo de usuario</a></li>
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i>Tabla Tipo de turno</a></li>
+            <li><a href="Test.php"><i class="fa fa-circle-o"></i>Tabla Estado</a></li>
+            <li><a href="Tcest.php"><i class="fa fa-circle-o"></i>Tabla Casa de estudio</a></li>
+            <li><a href="Tsit.php"><i class="fa fa-circle-o"></i>Tabla Situación</a></li>
+            <li><a href="Ttfa.php"><i class="fa fa-circle-o"></i>Tabla Tipo de falta</a></li>
+            <li><a href="Ttjus.php"><i class="fa fa-circle-o"></i>Tabla Tipo de justificación</a></li>
+            <li><a href="Tttu.php"><i class="fa fa-circle-o"></i>Tabla Tipo de turno</a></li>
+            <li><a href="Ttusu.php"><i class="fa fa-circle-o"></i>Tabla Tipo de usuario</a></li>
           </ul>
         </li>
         <li class="treeview">
-          <a href="Crear_turnos.php">
+          <a href="../Crear_turnos.php">
             <i class="fa fa-calendar-check-o "></i> <span>Crear turnos</span> <!-- La class de aquí es para el icono -->
             <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
             <!-- <i class="fa fa-angle-left pull-right"></i>-->
@@ -176,7 +176,7 @@ session_start();
           </a>
         </li>
         <li class="treeview">
-          <a href="../../Registro_usuario/registro.php">
+          <a href="../../../Registro_usuario/registro.php">
             <i class="fa fa-user-plus"></i> <span>Registrar Usuarios</span> <!-- La class de aquí es para el icono -->
           </a>
         </li>
@@ -190,13 +190,12 @@ session_start();
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Estado de justificaciones
-        <small>de empaques</small>
+         Tabla Tipo_usuario
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-        <li><a href="#">Justificaciones</a></li>
-        <li class="active">Estado</li>
+        <li><a href="#">Mantención de tablas</a></li>
+        <li><a href="active">Tabla Tipo_usuario</a></li>
       </ol>
     </section>
     <!-- Main content -->
@@ -204,110 +203,117 @@ session_start();
       <!-- general form elements disabled -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Estado de justificaciones</h3>
+              <h3 class="box-title">Agregar</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form action="Cambio_estado_falta.php" method="POST" method="POST" role="form">
+              <form action="MTtusu.php" method="POST" method="POST" role="form">
                 <!-- select -->
                 <div class="form-group">
-                  <label>Faltas justificadas:</label>
-                  <select name="falta" required class="form-control" onchange="capturaTexto(this.value)">
-                    <option></option>
-                    <?php
-                      $con = new mysqli($servidor, $usuario, $password, $bd);
-                      $con->set_charset("utf8");
-                      global $con;
-                      //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
-                      $sql = "SELECT jus_falta, jus_fecha, jus_usuario, tfa_nombre FROM usu_jus, usuario, falta, tipo_falta WHERE jus_falta=fal_id AND fal_tipofalta=tfa_id AND jus_usuario=usu_run;";
-                      $respuesta = $con -> query($sql);
-                      $filas = mysqli_num_rows($respuesta);
-                      echo "<p>".$result["jus_falta"]."</p>";
-                      if($filas > 0)
-                      {
-                          while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
-                        { 
-                              
-                              echo "<option value=".$result["jus_falta"].">".$result["jus_fecha"]." - ".$result["jus_usuario"]." - ".$result["tfa_nombre"]."</option>";
-                          }
-                      }
-                    ?>
-                  </select>
+                  <label>Tipo de usuario</label>
+                 <input name=tusu type="text" class="form-control" placeholder="">
                 </div>
-                
-                </div>
-
-                <script>
-                function capturaTexto(value) {
-                  var xmlhttp;
-                  if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
-                    xmlhttp=new XMLHttpRequest();
-                  }else{// code for IE6, IE5
-                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                  } 
-                  xmlhttp.onreadystatechange=function()
-                  {
-                    if (xmlhttp.readyState==4 && xmlhttp.status==200)
-                    {
-                      document.getElementById("demo").innerHTML=xmlhttp.responseText;
-                    }
-                  }
-                  xmlhttp.open("POST","obtenerComentarioFalta.php",true);
-                  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-                  xmlhttp.send("falta="+value);
-                }
-                </script>
-                
-                <div class="box box-primary">
-                  <div class="box-header with-border">
-                    <i class="fa fa-pencil-square-o"></i>
-
-                    <h3 class="box-title">Justificación</h3>
-                  </div>
-                  <!-- /.box-header -->
-                  <div class="box-body">
-                    <p id="demo"></p>
-                    <?php
-                      $con = new mysqli($servidor, $usuario, $password, $bd);
-                      $con->set_charset("utf8");
-                      global $con;
-
-                      //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>"
-                      //$filas = mysqli_num_rows($respuesta);
-                      if(isset($_POST['falta'])){
-                        $falta=$_POST['falta'];
-                        $sql = "SELECT jus_falcoment FROM usu_jus WHERE jus_falta=$falta";
-                      $respuesta = $con -> query($sql);
-                        echo "<h3>".$result["jus_falcoment"]."</h3>";
-                      }
-                    ?>
-                  </div>
-                  <!-- /.box-body -->
-                </div>
-
-                <div class="box-header with-border">
-                <div class="col-xs-2"> 
-                </div>
+  
                 <div class="col-xs-4"> 
-                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="2">Aceptar</button>
-                </div>
-                
-                <div class="col-xs-4"> 
-                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="3">Rechazar</button>
-                </div>
+                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="1">Agregar</button>
                 </div>
                 
               </form>
             </div>
             <!-- /.box-body -->
           </div>
+
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">Eliminar</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <form action="MTtusu.php" method="POST" method="POST" role="form">
+                <div class="form-group">
+                  <label>Tipo de usuario</label>
+                  <select name="tusu" required class="form-control">
+                    <option></option>
+                    <?php
+                      $con = new mysqli($servidor, $usuario, $password, $bd);
+                      $con->set_charset("utf8");
+                      global $con;
+                      //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
+                      $sql = "SELECT * FROM TIPO_USUARIO";
+                      $respuesta = $con -> query($sql);
+                      $filas = mysqli_num_rows($respuesta);
+                      if($filas > 0)
+                      {
+                          while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
+                        {
+                              echo "<option value=".$result["TUS_ID"].">".$result["TUS_TIPO"]."</option>";
+                          }
+                      }
+                    ?>
+                  </select>
+                </div>
+                <div class="col-xs-4"> 
+                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="2">Eliminar</button>
+                </div>
+                
+              </form>
+            </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box box-success">
+              <div class="box-header with-border">
+                <h3 class="box-title">Modicar</h3>
+              </div>
+              <div class="box-body">
+                <form action="MTtusu.php" method="POST" method="POST" role="form">
+                  <div class="form-group">
+                    <label>Seleccione el tipo de usuario a modificar:</label>
+                    <select name=tusuid required class="form-control">
+                      <option></option>
+                      <?php
+                        $con = new mysqli($servidor, $usuario, $password, $bd);
+                        $con->set_charset("utf8");
+                        global $con;
+                        //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
+                        $sql = "SELECT * FROM TIPO_USUARIO";
+                        $respuesta = $con -> query($sql);
+                        $filas = mysqli_num_rows($respuesta);
+                        if($filas > 0)
+                        {
+                            while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
+                          {
+                                echo "<option value=".$result["TUS_ID"].">".$result["TUS_TIPO"]."</option>";
+                            }
+                        }
+                      ?>
+                    </select>
+                    <div class="form-group">
+                    <label>Tipo de usario</label>
+                    <input name=tusu type="text" class="form-control" placeholder="">
+                    </div>                    
+                  </div>
+                  <div class="col-xs-4"> 
+                  <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="3">Modificar</button>
+                  </div>
+                  
+                </form>
+              </div>
+            </div>
+
           <!-- /.box -->
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 
-  
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.3.8
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+  </footer>
 
   
   <!-- Add the sidebar's background. This div must be placed
@@ -318,25 +324,25 @@ session_start();
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->
-<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../bootstrap/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="../../plugins/fastclick/fastclick.js"></script>
+<script src="../../../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/app.min.js"></script>
+<script src="../../../dist/js/app.min.js"></script>
 <!-- Sparkline -->
-<script src="../../plugins/sparkline/jquery.sparkline.min.js"></script>
+<script src="../../../plugins/sparkline/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
-<script src="../../plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="../../plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="../../../plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="../../../plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 <!-- SlimScroll 1.3.0 -->
-<script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="../../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- ChartJS 1.0.1 -->
-<script src="../../plugins/chartjs/Chart.min.js"></script>
+<script src="../../../plugins/chartjs/Chart.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../../dist/js/pages/dashboard2.js"></script>
+<script src="../../../dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+<script src="../../../dist/js/demo.js"></script>
 </body>
 </html>

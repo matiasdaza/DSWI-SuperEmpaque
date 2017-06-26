@@ -38,7 +38,7 @@ session_start();
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="../empaque.php" class="logo">
+    <a href="coordinador.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>E</span>
       <!-- logo for regular state and mobile devices -->
@@ -62,7 +62,6 @@ session_start();
               <?php
               if(isset($_SESSION['USUARIO'])){
                 echo "<span>".$_SESSION['USUARIO']['USU_NOMBRES']."</span>";
-                $usuariorun=$_SESSION['USUARIO']['USU_RUN'];
               }
               ?>
             </a>
@@ -93,7 +92,6 @@ session_start();
     </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
-  <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -111,24 +109,34 @@ session_start();
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
-     
-      <!--Menú home -->
+      
+      <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">MENÚ</li>
         <li class="treeview">
-          <a href="../empaque.php">
+          <a href="../Coordinador.php">
             <i class="fa fa-home"></i> <span>Home</span> <!-- La class de aquí es para el icono -->
+            <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
+            <!-- <i class="fa fa-angle-left pull-right"></i>-->
+            <!--</span>-->
           </a>
         </li>
-        <!-- Menú faltas -->
-        <li class="treeview">
-          <a href="Mis_faltas.php">
-            <i class="fa fa-exclamation"></i>
-            <span>Mis faltas</span>
-          </a>
-        </li>
-        <!-- Menú Justificaciones -->
         <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-exclamation"></i>
+            <span>Faltas</span>
+            <span class="pull-right-container">
+              <span class="fa fa-angle-left pull-right"></span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="agregar_falta.php"><i class="fa fa-circle-o"></i>Agregar Falta</a></li>
+            <li><a href="Eliminar_falta.php"><i class="fa fa-circle-o"></i> Eliminar Falta</a></li>
+            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Modificar Falta</a></li>
+          </ul>
+        </li>
+        <li>
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-pencil-square-o"></i>
             <span>Justificaciones</span>
@@ -137,12 +145,41 @@ session_start();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="mis_justificaciones.php"><i class="fa fa-circle-o"></i>Mis justificaciones</a></li>
-            <li><a href="crear_justificaciones.php"><i class="fa fa-circle-o"></i>Crear justificaciones</a></li>
+            <li><a href="Estado_justificacion.php"><i class="fa fa-circle-o"></i>Estado de justificaciones</a></li>
           </ul>
         </li>
-
         <li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-database"></i>
+            <span>Mantención de tablas</span>
+            <span class="pull-right-container">
+              <span class="fa fa-angle-left pull-right"></span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="Tablas_basicas/Tcom.php"><i class="fa fa-circle-o"></i>Tabla Comuna</a></li>
+            <li><a href="Tablas_basicas/Treg.php"><i class="fa fa-circle-o"></i>Tabla Región</a></li>
+            <li><a href="Tablas_basicas/Tgen.php"><i class="fa fa-circle-o"></i>Tabla Género</a></li>
+            <li><a href="Tablas_basicas/Test.php"><i class="fa fa-circle-o"></i>Tabla Estado</a></li>
+            <li><a href="Tablas_basicas/Ttfa.php"><i class="fa fa-circle-o"></i>Tabla Tipo de falta</a></li>
+            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i>Tabla Tipo de usuario</a></li>
+            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i>Tabla Tipo de turno</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="Crear_turnos.php">
+            <i class="fa fa-calendar-check-o "></i> <span>Crear turnos</span> <!-- La class de aquí es para el icono -->
+            <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
+            <!-- <i class="fa fa-angle-left pull-right"></i>-->
+            <!--</span>-->
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="../../Registro_usuario/registro.php">
+            <i class="fa fa-user-plus"></i> <span>Registrar Usuarios</span> <!-- La class de aquí es para el icono -->
+          </a>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -153,74 +190,84 @@ session_start();
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Mis justificaciones
-        <small></small>
+         Faltas
+        <small>de empaques</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-        <li class="active">Crear justificaciones</li>
+        <li><a href="../coordinador.php"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="#">Faltas</a></li>
+        <li class="active">Eliminar faltas</li>
       </ol>
     </section>
     <!-- Main content -->
     <section class="content">
       <!-- general form elements disabled -->
-          <div class="box box-primary">
+          <div class="box box-danger">
             <div class="box-header with-border">
-              <h3 class="box-title">Estado de justificaciones</h3>
+              <h3 class="box-title">Falta</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form action="prueba.php" method="POST" method="POST" role="form">
+              <form action="M_Eliminar_falta.php" method="POST" method="POST" role="form">
                 <!-- select -->
-                <div class="form-group">
-                  <label>Faltas cometidas (No justificadas):</label>
-                  <select name="falta" required class="form-control">
-                    <option></option>
-                    <?php
-                      $con = new mysqli($servidor, $usuario, $password, $bd);
-                      $con->set_charset("utf8");
-                      global $con;
-                      //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
-                      $sql = "SELECT tufa_falta, tufa_fecha, usu_run, tfa_nombre FROM tur_fal, usuario, falta, tipo_falta WHERE tufa_usuario = $usuariorun and TUFA_USUARIO = usu_run and tufa_falta = fal_id and fal_tipofalta = tfa_id and fal_estado = 1;";
-                      $respuesta = $con -> query($sql);
-                      $filas = mysqli_num_rows($respuesta);
-                      if($filas > 0)
-                      {
-                          while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
-                        { 
-                              
-                              echo "<option value=".$result["tufa_falta"].">".$result["tufa_fecha"]." - ".$result["usu_run"]." - ".$result["tfa_nombre"]."</option>";
-                          }
+                <div class="box-body">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>RUN</th>
+                  <th>Nombres</th>
+                  <th>A Pat</th>
+                  <th>A Mat</th>
+                  <th>Edad</th>
+                  <th>Correo</th>
+                  <th>Teléfono</th>
+                  <th>C. Estudios</th>
+                  <th>Género</th>
+                  <th>Comuna</th>
+                  <th>Tipo Usuario</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <?php 
+                $con = new mysqli($servidor, $usuario, $password, $bd);
+                $con->set_charset("utf8");
+                  global $con;
+                  $sql = "SELECT USU_RUN, USU_NOMBRES, USU_APAT, USU_AMAT, USU_EDAD, USU_CORREO, USU_TELEFONO, CEST_NOMBRE, GEN_NOMBRE, SIT_NOMBRE, COM_NOMBRE, TUS_TIPO FROM USUARIO, CASAESTUDIOS, SITUACION, COMUNA, TIPO_USUARIO WHERE USU_CASAESTUDIOS=CEST_ID AND USU_GENERO = GEN_ID AND USU_SITUACION=SIT_ID AND USU_COMUNA=COM_ID AND USU_TIPOUSUARIO=TUS_ID";
+                  $respuesta = $con -> query($sql);
+                  $filas = mysqli_num_rows($respuesta);
+                if($filas > 0)
+                  {
+                      while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
+                    {
+                      
+                          echo "<tr>";
+                          echo "<td>", $result["USU_RUN"], "</td>";
+                          echo "<td>", $result["USU_NOMBRES"], "</td>";
+                          echo "<td>", $result["USU_APAT"],"</td>" ;
+                          echo "<td>", $result["USU_AMAT"], "</td>";
+                          echo "<td>", $result["USU_EDAD"],"</td>";
+                          echo "<td>", $result["USU_CORREO"], "</td> ";
+                          echo "<td>", $result["USU_TELEFONO"],"</td>" ;
+                          echo "<td>", $result["CEST_NOMBRE"], "</td>";
+                          echo "<td>", $result["GEN_NOMBRE"], "</td>";
+                          echo "<td>", $result["SIT_NOMBRE"], "</td>";
+                          echo "<td>", $result["COM_NOMBRE"], "</td>";
+                          echo "<td>", $result["TUS_TIPO"], "</td>";
+                          echo '<td><input type="checkbox" name="Eliminar[]" value='.$result["USU_RUN"].'></td>';
+                          echo "</tr>";
                       }
-                    ?>
-                  </select>
+                }
+                ?>
+                
+                </tbody>
+              </table>
+            </div>
+                </div>
+                <div class="col-xs-4"> 
+                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value=2 >Eliminar</button>
                 </div>
                 
-                </div>
-
-                               
-                <div class="box box-primary">
-                  <div class="box-header with-border">
-                    <i class="fa fa-pencil-square-o"></i>
-
-                    <h3 class="box-title">Justificar</h3><small> Máximo 300 caracteres</small>
-                  </div>
-                  <!-- /.box-header -->
-                  <div class="box-body">
-                   <div class="row">
-                    <div class="col-sm-9"> 
-                      <textarea cols="100" rows="5" name="comentario" MAXLENGTH="300""></textarea> 
-                    </div>
-                    
-                    <div class="col-sm-2"> 
-                      <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="1">Enviar</button>
-                    </div> 
-                  </div> 
-                                 
-                  </div>
-                  <!-- /.box-body -->
-                </div>
-              
               </form>
             </div>
             <!-- /.box-body -->
@@ -230,6 +277,7 @@ session_start();
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
   
 
   
@@ -245,7 +293,7 @@ session_start();
 <!-- Bootstrap 3.3.6 -->
 <script src="../../bootstrap/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="../plugins/fastclick/fastclick.js"></script>
+<script src="../../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/app.min.js"></script>
 <!-- Sparkline -->
