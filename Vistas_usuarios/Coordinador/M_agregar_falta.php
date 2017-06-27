@@ -40,8 +40,8 @@ if (isset($_POST['enviar']))
         } 
         else
         {
-            //echo '<br/><br/><br/>La sugerencia no fue ingresada, intente nuevamente. Error: '.mysqli_error($con);
-            header('location: agregar_falta_r.php');
+            echo '<br/><br/><br/>La sugerencia no fue ingresada, intente nuevamente. Error: '.mysqli_error($con);
+            //header('location: agregar_falta_r.php');
         }
 }
 ?>

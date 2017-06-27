@@ -1,6 +1,9 @@
 <?php 
 include ('../../conexion/conexion.php');
 session_start();
+if(!isset($_SESSION["USUARIO"])){
+  header('location: ../../registro_usuario/login.html');
+}
 ?>
 
 <!DOCTYPE html>
@@ -135,7 +138,7 @@ session_start();
           <ul class="treeview-menu">
             <li><a href="agregar_falta.php"><i class="fa fa-circle-o"></i>Agregar Falta</a></li>
             <li><a href="Eliminar_falta.php"><i class="fa fa-circle-o"></i> Eliminar Falta</a></li>
-            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Modificar Falta</a></li>
+            <li><a href="Modificar_falta.php"><i class="fa fa-circle-o"></i> Modificar Falta</a></li>
           </ul>
         </li>
         <li>
@@ -243,7 +246,7 @@ session_start();
                 $con = new mysqli($servidor, $usuario, $password, $bd);
                 $con->set_charset("utf8");
                   global $con;
-                  $sql = "SELECT USU_RUN, USU_NOMBRES, USU_APAT, USU_AMAT, USU_EDAD, USU_CORREO, USU_TELEFONO, CEST_NOMBRE, GEN_NOMBRE, SIT_NOMBRE, COM_NOMBRE, TUS_TIPO FROM USUARIO, CASAESTUDIOS, SITUACION, COMUNA, TIPO_USUARIO, GENERO WHERE USU_CASAESTUDIO=CEST_ID AND USU_GENERO = GEN_ID AND USU_SITUACION=SIT_ID AND USU_COMUNA=COM_ID AND USU_TIPOUSUARIO=TUS_ID";
+                  $sql = "SELECT USU_RUN, USU_NOMBRES, USU_APAT, USU_AMAT, USU_EDAD, USU_CORREO, USU_TELEFONO, CEST_NOMBRE, GEN_TIPO, SIT_NOMBRE, COM_NOMBRE, TUS_TIPO FROM USUARIO, CASAESTUDIOS, SITUACION, COMUNA, TIPO_USUARIO, GENERO WHERE USU_CASAESTUDIO=CEST_ID AND USU_GENERO = GEN_ID AND USU_SITUACION=SIT_ID AND USU_COMUNA=COM_ID AND USU_TIPOUSUARIO=TUS_ID";
                   $respuesta = $con -> query($sql);
                   $filas = mysqli_num_rows($respuesta);
                 if($filas > 0)
@@ -261,7 +264,7 @@ session_start();
                           echo "<td>", $result["USU_TELEFONO"],"</td>" ;
                           echo "<td>", $result["CEST_NOMBRE"], "</td>";
                           echo "<td>", $result["SIT_NOMBRE"], "</td>";
-                          echo "<td>", $result["GEN_NOMBRE"], "</td>";
+                          echo "<td>", $result["GEN_TIPO"], "</td>";
                           echo "<td>", $result["COM_NOMBRE"], "</td>";
                           echo "<td>", $result["TUS_TIPO"], "</td>";
                           echo '<td><input type="checkbox" name="usuid" value='.$result["USU_RUN"].'></td>';
@@ -374,7 +377,7 @@ session_start();
                     {
                         while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que 
                       { 
-                            echo "<option value=".$result["GEN_ID"].">".$result["GEN_NOMBRE"]."</option>";
+                            echo "<option value=".$result["GEN_ID"].">".$result["GEN_TIPO"]."</option>";
                         }
                     }
                   ?>

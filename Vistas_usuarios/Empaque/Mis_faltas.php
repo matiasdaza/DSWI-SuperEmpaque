@@ -1,6 +1,9 @@
 <?php 
 include ('../../conexion/conexion.php');
 session_start();
+if(!isset($_SESSION["USUARIO"])){
+  header('location: ../../registro_usuario/login.html');
+}
 ?>
 
 <!DOCTYPE html>
@@ -194,7 +197,7 @@ session_start();
                     $puntaje=$row["SUM(tfa_valor)"];
                   }
                   
-                  if($puntaje<5){ ?>
+                  if($puntaje>0 && $puntaje<5){ ?>
                     <div class="progress">
                       <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 34%">
                       </div>

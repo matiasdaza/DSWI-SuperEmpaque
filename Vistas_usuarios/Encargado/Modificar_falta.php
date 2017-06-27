@@ -120,7 +120,7 @@ if(!isset($_SESSION["USUARIO"])){
       <ul class="sidebar-menu">
         <li class="header">MENÚ</li>
         <li class="treeview">
-          <a href="../Coordinador.php">
+          <a href="Coordinador.php">
             <i class="fa fa-home"></i> <span>Home</span> <!-- La class de aquí es para el icono -->
             <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
             <!-- <i class="fa fa-angle-left pull-right"></i>-->
@@ -143,37 +143,6 @@ if(!isset($_SESSION["USUARIO"])){
         </li>
         <li>
         <li class="treeview">
-          <a href="#">
-            <i class="fa fa-pencil-square-o"></i>
-            <span>Justificaciones</span>
-            <span class="pull-right-container">
-              <span class="fa fa-angle-left pull-right"></span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="Estado_justificacion.php"><i class="fa fa-circle-o"></i>Estado de justificaciones</a></li>
-          </ul>
-        </li>
-        <li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-database"></i>
-            <span>Mantención de tablas</span>
-            <span class="pull-right-container">
-              <span class="fa fa-angle-left pull-right"></span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="Tablas_basicas/Test.php"><i class="fa fa-circle-o"></i>Tabla Estado</a></li>
-            <li><a href="Tablas_basicas/Tcest.php"><i class="fa fa-circle-o"></i>Tabla Casa de estudio</a></li>
-            <li><a href="Tablas_basicas/Tsit.php"><i class="fa fa-circle-o"></i>Tabla Situación</a></li>
-            <li><a href="Tablas_basicas/Ttfa.php"><i class="fa fa-circle-o"></i>Tabla Tipo de falta</a></li>
-            <li><a href="Tablas_basicas/Ttjus.php"><i class="fa fa-circle-o"></i>Tabla Tipo de justificación</a></li>
-            <li><a href="Tablas_basicas/Tttu.php"><i class="fa fa-circle-o"></i>Tabla Tipo de turno</a></li>
-            <li><a href="Tablas_basicas/Ttusu.php"><i class="fa fa-circle-o"></i>Tabla Tipo de usuario</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
           <a href="Crear_turnos.php">
             <i class="fa fa-calendar-check-o "></i> <span>Crear turnos</span> <!-- La class de aquí es para el icono -->
             <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
@@ -181,18 +150,6 @@ if(!isset($_SESSION["USUARIO"])){
             <!--</span>-->
           </a>
         </li>
-        <li class="treeview">
-          <a href="../../Registro_usuario/registro.php">
-            <i class="fa fa-user-plus"></i> <span>Registrar Usuarios</span> <!-- La class de aquí es para el icono -->
-          </a>
-        </li>
-        <li class="treeview">
-          <a href="Modificar_usuarios.php">
-            <i class="fa fa-wrench"></i> <span>Modificar Usuarios</span> <!-- La class de aquí es para el icono -->
-            <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
-            <!-- <i class="fa fa-angle-left pull-right"></i>-->
-            <!--</span>-->
-          </a>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -209,7 +166,7 @@ if(!isset($_SESSION["USUARIO"])){
       <ol class="breadcrumb">
         <li><a href="../coordinador.php"><i class="fa fa-home"></i> Home</a></li>
         <li><a href="#">Faltas</a></li>
-        <li class="active">Eliminar faltas</li>
+        <li class="active">Modificar faltas</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -217,11 +174,11 @@ if(!isset($_SESSION["USUARIO"])){
       <!-- general form elements disabled -->
           <div class="box box-danger">
             <div class="box-header with-border">
-              <h3 class="box-title">Falta</h3>
+              <h3 class="box-title">Seleccione falta a modificar</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form action="M_Eliminar_falta.php" method="POST" method="POST" role="form">
+              <form action="MModificar_falta.php" method="POST" method="POST" role="form">
                 <!-- select -->
                 <div class="box-body">
               <table id="example2" class="table table-bordered table-hover">
@@ -232,7 +189,7 @@ if(!isset($_SESSION["USUARIO"])){
                   <th>TURNO</th>
                   <th>FECHA</th>
                   <th>FALTA</th>
-                  <th>Eliminar</th>
+                  <th>Selección</th>
                 </tr>
                 </thead>
 
@@ -255,7 +212,7 @@ if(!isset($_SESSION["USUARIO"])){
                           echo "<td>", $result["TTU_NOMBRE"],"</td>";
                           echo "<td>", $result["TUR_FECHA"], "</td> ";
                           echo "<td>", $result["TFA_NOMBRE"],"</td>" ;
-                          echo '<td><input type="checkbox" name="Eliminar[]" value='.$result["TUFA_FALTA"].'></td>';
+                          echo '<td><input type="checkbox" name="modificar" value='.$result["TUFA_FALTA"].'></td>';
                           echo "</tr>";
                       }
                 }
@@ -264,9 +221,78 @@ if(!isset($_SESSION["USUARIO"])){
                 </tbody>
               </table>
             </div>
+
+            <div class="form-group">
+                  <label>Usuario</label>
+                  <select name="usuario" required class="form-control">
+                    <option></option>
+                    <?php
+                      $con = new mysqli($servidor, $usuario, $password, $bd);
+                      $con->set_charset("utf8");
+                      global $con;
+                      //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
+                      $sql = "SELECT * FROM usuario";
+                      $respuesta = $con -> query($sql);
+                      $filas = mysqli_num_rows($respuesta);
+                      if($filas > 0)
+                      {
+                          while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
+                        { 
+                              echo "<option value=".$result["USU_RUN"].">".$result["USU_NOMBRES"], " ", $result["USU_APAT"], "</option>";
+                          }
+                      }
+                    ?>
+                  </select>
+            </div>
+
+            <div class="form-group">
+                  <label>Turno</label>
+                  <select name="turno" required class="form-control">
+                    <option></option>
+                    <?php
+                      $fecha=date("Y")."-".date("m")."-".date("d");
+                      $con = new mysqli($servidor, $usuario, $password, $bd);
+                      $con->set_charset("utf8");
+                      global $con;
+                      //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
+                      $sql = "SELECT TUR_ID, TTU_NOMBRE ,TUR_FECHA  FROM turno, tipo_turno WHERE TUR_TTU=TTU_ID and '$fecha' BETWEEN TUR_PINICIO and TUR_PTERMINO";
+                      $respuesta = $con -> query($sql);
+                      $filas = mysqli_num_rows($respuesta);
+                      if($filas > 0)
+                      {
+                          while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
+                        {
+                              echo "<option value=".$result["TUR_ID"].">".$result["TTU_NOMBRE"], " ", $result["TUR_FECHA"], "</option>";
+                          }
+                      }
+                    ?>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Falta</label>
+                  <select name="tfal" required class="form-control">
+                    <option></option>
+                    <?php
+                      $con = new mysqli($servidor, $usuario, $password, $bd);
+                      $con->set_charset("utf8");
+                      global $con;
+                      //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
+                      $sql = "SELECT * FROM tipo_falta";
+                      $respuesta = $con -> query($sql);
+                      $filas = mysqli_num_rows($respuesta);
+                      if($filas > 0)
+                      {
+                          while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
+                        { 
+                              echo "<option value=".$result["TFA_ID"].">".$result["TFA_NOMBRE"]."</option>";
+                          }
+                      }
+                    ?>
+                  </select>
+                </div>
                 </div>
                 <div class="col-xs-4"> 
-                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value=2 >Eliminar</button>
+                <button type="submit" name="enviar" class="btn btn-primary btn-block btn-flat" value="1">Modificar</button>
                 </div>
                 
               </form>

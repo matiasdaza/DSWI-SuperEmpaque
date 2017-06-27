@@ -28,12 +28,13 @@
             if($con -> query($sql)) //$con -> query($sql) = True or false
             {
                 echo '<h1>La falta se ha ingresado correctamente</h1>'; 
-                //header('location: agregar_falta_a.php');
+                header('location: registro.php');
            
             } 
             else
             {
                 echo '<br/><br/><br/>La sugerencia no fue ingresada, intente nuevamente. Error: '.mysqli_error($con);
+                header('location: registro.php');
                 //header('location: agregar_falta_r.php');
             }
             

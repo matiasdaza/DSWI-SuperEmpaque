@@ -1,6 +1,9 @@
 <?php 
 include ('../../conexion/conexion.php');
 session_start();
+if(!isset($_SESSION["USUARIO"])){
+  header('location: ../../registro_usuario/login.html');
+}
 ?>
 
 <!DOCTYPE html>
@@ -135,7 +138,7 @@ session_start();
           <ul class="treeview-menu">
             <li><a href="agregar_falta.php"><i class="fa fa-circle-o"></i>Agregar Falta</a></li>
             <li><a href="Eliminar_falta.php"><i class="fa fa-circle-o"></i> Eliminar Falta</a></li>
-            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Modificar Falta</a></li>
+            <li><a href="Modificar_falta.php"><i class="fa fa-circle-o"></i> Modificar Falta</a></li>
           </ul>
         </li>
         <li>
@@ -202,7 +205,7 @@ session_start();
       <div class="alert alert-info alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
          <h4><i class="icon fa fa-info"></i> Alert!</h4>
-        La falta ha agregada eliminada exitosamente!
+        La falta ha sido agregada exitosamente!
       </div>
     </div>
 

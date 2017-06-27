@@ -51,7 +51,7 @@ if (isset($_POST['enviar'])){
     if($con -> query($sql)) //$con -> query($sql) = True or false
     {
         echo '<h1>La falta se ha ingresado correctamente</h1>'; 
-        //header('location: Eliminar_falta_a.php');
+        header('location: crear_turnos.php');
            
     } 
     else

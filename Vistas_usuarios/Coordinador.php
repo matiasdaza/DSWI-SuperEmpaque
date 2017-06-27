@@ -138,7 +138,7 @@ if(!isset($_SESSION["USUARIO"])){
           <ul class="treeview-menu">
             <li><a href="coordinador/agregar_falta.php"><i class="fa fa-circle-o"></i>Agregar Falta</a></li>
             <li><a href="coordinador/Eliminar_falta.php"><i class="fa fa-circle-o"></i> Eliminar Falta</a></li>
-            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Modificar Falta</a></li>
+            <li><a href="coordinador/Modificar_falta.php"><i class="fa fa-circle-o"></i> Modificar Falta</a></li>
           </ul>
         </li>
         <li>
@@ -238,7 +238,7 @@ if(!isset($_SESSION["USUARIO"])){
       $con = new mysqli($servidor, $usuario, $password, $bd);
       $con->set_charset("utf8");
         global $con;
-        $sql = "SELECT TUFA_FECHA, ttu_nombre, emp_nombre, sup_local, usu_run, USU_NOMBRES, usu_apat, usu_amat, tfa_nombre, tfa_valor,  est_tipo FROM tur_fal, usuario, empresa, supermercado, falta, tipo_falta, turno, tipo_turno, estado WHERE est_id!=2 and tufa_usuario=usu_run and TUFA_TURNO=tur_id and TUFA_FALTA=fal_id and fal_tipofalta=tfa_id and usu_supermerc=sup_id and sup_empresa=emp_id and tur_ttu=ttu_id and fal_estado=est_id and'$fecha' BETWEEN TUR_PINICIO and TUR_PTERMINO;";
+        $sql = "SELECT TUFA_FECHA, ttu_nombre, emp_nombre, sup_local, usu_run, USU_NOMBRES, usu_apat, usu_amat, tfa_nombre, tfa_valor,  est_tipo FROM tur_fal, usuario, empresa, supermercado, falta, tipo_falta, turno, tipo_turno, estado WHERE est_id!=2 and tufa_usuario=usu_run and TUFA_TURNO=tur_id and TUFA_FALTA=fal_id and fal_tipofalta=tfa_id and usu_supermerc=sup_id and sup_empresa=emp_id and tur_ttu=ttu_id and fal_estado=est_id and '$fecha' BETWEEN TUR_PINICIO and TUR_PTERMINO;";
         $respuesta = $con -> query($sql);
         $filas = mysqli_num_rows($respuesta);
     ?>

@@ -12,7 +12,7 @@
                 WHERE tufa_usuario=usu_run and usu_run=$usuariorun and TUFA_TURNO=tur_id and TUFA_FALTA=fal_id and fal_tipofalta=tfa_id and usu_supermerc=sup_id and sup_empresa=emp_id and tur_ttu=ttu_id and fal_estado=est_id and '$fecha' BETWEEN TUR_PINICIO and TUR_PTERMINO;";
 
     $resultado = $con -> query($query);
-    echo $query;
+
 	$pdf = new PDF();
 	$pdf -> AliasNbPages();
 	$pdf -> AddPage();
@@ -25,7 +25,10 @@
       $pdf -> Cell(5, 6, ' al ', 0, 0, 'C');
 	  $pdf -> Cell(20, 6, utf8_decode($row['TUR_PTERMINO']), 0, 0, 'C');
     }
-	
+	$query = "SELECT TUFA_FECHA, ttu_nombre, emp_nombre, sup_local, usu_run, USU_NOMBRES, usu_apat, usu_amat, tfa_nombre, tfa_valor,  est_tipo, TUR_PINICIO, TUR_PTERMINO
+                FROM tur_fal, usuario, empresa, supermercado, falta, tipo_falta, turno, tipo_turno, estado
+                WHERE tufa_usuario=usu_run and usu_run=$usuariorun and TUFA_TURNO=tur_id and TUFA_FALTA=fal_id and fal_tipofalta=tfa_id and usu_supermerc=sup_id and sup_empresa=emp_id and tur_ttu=ttu_id and fal_estado=est_id and '$fecha' BETWEEN TUR_PINICIO and TUR_PTERMINO;";
+                
 	$pdf -> Ln(15);
 	$pdf->SetFillColor(232,232,232);
 	$pdf -> SetFont('Arial','B', 10); // Fuente, tipo, tamaño
@@ -54,5 +57,6 @@
 		$pdf -> Cell(25, 6, utf8_decode($row['tfa_nombre']), 1, 0, 'C');
 		$pdf -> Cell(16, 6, utf8_decode($row['est_tipo']), 1, 1, 'C');
 	}
+
 	$pdf->Output('I','ReportePersonal.pdf');
 ?>

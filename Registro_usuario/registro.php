@@ -152,7 +152,7 @@ session_start();
                     {
                         while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que 
                       { 
-                            echo "<option value=".$result["GEN_ID"].">".$result["GEN_NOMBRE"]."</option>";
+                            echo "<option value=".$result["GEN_ID"].">".$result["GEN_TIPO"]."</option>";
                         }
                     }
                   ?>

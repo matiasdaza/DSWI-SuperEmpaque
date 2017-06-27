@@ -1,6 +1,8 @@
 <?php 
 include ('../../../conexion/conexion.php');
 session_start();
+if(!isset($_SESSION["USUARIO"])){
+  header('location: ../../../registro_usuario/login.html');
 ?>
 
 <!DOCTYPE html>
@@ -135,7 +137,7 @@ session_start();
           <ul class="treeview-menu">
             <li><a href="../agregar_falta.php"><i class="fa fa-circle-o"></i>Agregar Falta</a></li>
             <li><a href="../Eliminar_falta.php"><i class="fa fa-circle-o"></i> Eliminar Falta</a></li>
-            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Modificar Falta</a></li>
+            <li><a href="../Modificar_falta.php"><i class="fa fa-circle-o"></i> Modificar Falta</a></li>
           </ul>
         </li>
         <li>

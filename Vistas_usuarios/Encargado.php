@@ -1,6 +1,9 @@
 <?php 
 include ('../conexion/conexion.php');
 session_start();
+if(!isset($_SESSION["USUARIO"])){
+  header('location: ../registro_usuario/login.html');
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +41,7 @@ session_start();
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="coordinador.php" class="logo">
+    <a href="encargado.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>E</span>
       <!-- logo for regular state and mobile devices -->
@@ -70,7 +73,7 @@ session_start();
               <li class="user-header">
                 <img src="../imagenes/logo.jpg" class="img-circle" alt="User Image">
                 <?php
-                    $tipousuario="Coordinador";
+                    $tipousuario="Encargado";
                     echo "<p>".$_SESSION['USUARIO']['USU_NOMBRES']." - ".$tipousuario."</p>";
                 ?>
               </li>
@@ -117,7 +120,7 @@ session_start();
       <ul class="sidebar-menu">
         <li class="header">MENÚ</li>
         <li class="active treeview">
-          <a href="Coordinador.php">
+          <a href="Encargado.php">
             <i class="fa fa-home"></i> <span>Home</span> <!-- La class de aquí es para el icono -->
             <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
             <!-- <i class="fa fa-angle-left pull-right"></i>-->
@@ -135,7 +138,7 @@ session_start();
           <ul class="treeview-menu">
             <li><a href="encargado/agregar_falta.php"><i class="fa fa-circle-o"></i>Agregar Falta</a></li>
             <li><a href="encargado/Eliminar_falta.php"><i class="fa fa-circle-o"></i> Eliminar Falta</a></li>
-            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Modificar Falta</a></li>
+            <li><a href="encargado/Modificar_falta.php"><i class="fa fa-circle-o"></i> Modificar Falta</a></li>
           </ul>
         </li>
         <li>
