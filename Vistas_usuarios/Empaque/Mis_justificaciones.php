@@ -78,8 +78,11 @@ session_start();
               <!-- Menu Footer-->
               <li class="user-footer">
               <center>
-                <div>
-                  <a href="../registro_usuario/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                <div class="pull-left">
+                  <a href="CambioContrasenia.php" class="btn btn-default btn-flat">Cambiar contraseña</a>
+                </div>
+                <div class="pull-right">
+                  <a href="../../registro_usuario/logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </center>
               </li>
@@ -170,7 +173,7 @@ session_start();
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form action="prueba.php" method="POST" method="POST" role="form">
+              <form action="" method="POST" method="POST" role="form">
                 <!-- select -->
                 <div class="form-group">
                   <label>Faltas justificadas:</label>
