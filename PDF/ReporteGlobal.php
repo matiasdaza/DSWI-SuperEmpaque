@@ -22,9 +22,9 @@
 	  $pdf -> Cell(20, 6, $row['TUR_PTERMINO'], 0, 0, 'C');
     }
 	
-    $query = "SELECT TUFA_FECHA, ttu_nombre, emp_nombre, sup_local, usu_run, USU_NOMBRES, usu_apat, usu_amat, tfa_nombre, tfa_valor,  est_tipo, TUR_PINICIO, TUR_PTERMINO FROM tur_fal, usuario, empresa, supermercado, falta, tipo_falta, turno, tipo_turno, estado WHERE est_id!=2 and tufa_usuario=usu_run and TUFA_TURNO=tur_id and TUFA_FALTA=fal_id and fal_tipofalta=tfa_id and usu_supermerc=sup_id and sup_empresa=emp_id and tur_ttu=ttu_id and fal_estado=est_id and'$fecha' BETWEEN TUR_PINICIO and TUR_PTERMINO;";
+    $sql = "SELECT TUFA_FECHA, ttu_nombre, emp_nombre, sup_local, usu_run, USU_NOMBRES, usu_apat, usu_amat, tfa_nombre, tfa_valor,  est_tipo, TUR_PINICIO, TUR_PTERMINO FROM tur_fal, usuario, empresa, supermercado, falta, tipo_falta, turno, tipo_turno, estado WHERE est_id!=2 and tufa_usuario=usu_run and TUFA_TURNO=tur_id and TUFA_FALTA=fal_id and fal_tipofalta=tfa_id and usu_supermerc=sup_id and sup_empresa=emp_id and tur_ttu=ttu_id and fal_estado=est_id and'$fecha' BETWEEN TUR_PINICIO and TUR_PTERMINO;";
 
-    $resultado = $con -> query($query);
+    $resultado = $con -> query($sql);
 
 
 	

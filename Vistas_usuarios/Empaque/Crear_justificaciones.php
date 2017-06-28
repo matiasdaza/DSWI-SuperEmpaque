@@ -74,7 +74,7 @@ if(!isset($_SESSION["USUARIO"])){
               <li class="user-header">
                 <img src="../../imagenes/logo.jpg" class="img-circle" alt="User Image">
                 <?php
-                    $tipousuario="Coordinador";
+                    $tipousuario="Empaque";
                     echo "<p>".$_SESSION['USUARIO']['USU_NOMBRES']." - ".$tipousuario."</p>";
                 ?>
               </li>
@@ -187,7 +187,8 @@ if(!isset($_SESSION["USUARIO"])){
                       $con->set_charset("utf8");
                       global $con;
                       //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
-                      $sql = "SELECT tufa_falta, tufa_fecha, usu_run, tfa_nombre FROM tur_fal, usuario, falta, tipo_falta WHERE tufa_usuario = $usuariorun and TUFA_USUARIO = usu_run and tufa_falta = fal_id and fal_tipofalta = tfa_id and fal_estado = 1;";
+                      /*$sql = "SELECT tufa_falta, tufa_fecha, usu_run, tfa_nombre FROM tur_fal, usuario, falta, tipo_falta WHERE tufa_usuario = $usuariorun and TUFA_USUARIO = usu_run and tufa_falta = fal_id and fal_tipofalta = tfa_id and fal_estado = 1;"; ESTE ES EL ESTABLE */
+                      $sql = "SELECT DISTINCT tufa_falta, tufa_fecha, usu_run, tfa_nombre FROM tur_fal, usuario, falta, tipo_falta WHERE tufa_usuario = $usuariorun and TUFA_USUARIO = usu_run and tufa_falta = fal_id and fal_tipofalta = tfa_id and fal_estado = 1 and tufa_falta NOT IN (SELECT tufa_falta from tur_fal, usu_jus where tufa_falta=jus_falta);";
                       $respuesta = $con -> query($sql);
                       $filas = mysqli_num_rows($respuesta);
                       if($filas > 0)

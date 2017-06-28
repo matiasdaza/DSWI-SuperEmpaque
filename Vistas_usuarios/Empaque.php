@@ -41,7 +41,7 @@ if(!isset($_SESSION["USUARIO"])){
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="coordinador.php" class="logo">
+    <a href="empaque.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>E</span>
       <!-- logo for regular state and mobile devices -->
@@ -73,7 +73,7 @@ if(!isset($_SESSION["USUARIO"])){
               <li class="user-header">
                 <img src="../imagenes/logo.jpg" class="img-circle" alt="User Image">
                 <?php
-                    $tipousuario="Coordinador";
+                    $tipousuario="Empaque";
                     echo "<p>".$_SESSION['USUARIO']['USU_NOMBRES']." - ".$tipousuario."</p>";
                 ?>
               </li>
@@ -121,7 +121,7 @@ if(!isset($_SESSION["USUARIO"])){
       <ul class="sidebar-menu">
         <li class="header">Menú</li>
         <li class="active treeview">
-          <a href="Coordinador.php">
+          <a href="empaque.php">
             <i class="fa fa-home"></i> <span>Home</span> <!-- La class de aquí es para el icono -->
           </a>
         </li>

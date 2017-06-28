@@ -13,7 +13,7 @@
         if($con -> query($sql)) //$con -> query($sql) = True or false
         {
             echo '<h1>La falta se ha ingresado correctamente</h1>'; 
-            //header('location: agregar_falta_a.php');
+            header('location: Estado_justificacion.php');
        
         } 
         else

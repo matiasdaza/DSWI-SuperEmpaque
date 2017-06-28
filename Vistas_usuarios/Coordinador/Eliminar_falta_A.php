@@ -41,7 +41,7 @@ if(!isset($_SESSION["USUARIO"])){
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="coordinador.php" class="logo">
+    <a href="../coordinador.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>E</span>
       <!-- logo for regular state and mobile devices -->
@@ -73,7 +73,7 @@ if(!isset($_SESSION["USUARIO"])){
               <li class="user-header">
                 <img src="../../imagenes/logo.jpg" class="img-circle" alt="User Image">
                 <?php
-                    $tipousuario="Coordinador";
+                    $tipousuario="Encargado";
                     echo "<p>".$_SESSION['USUARIO']['USU_NOMBRES']." - ".$tipousuario."</p>";
                 ?>
               </li>
@@ -120,7 +120,7 @@ if(!isset($_SESSION["USUARIO"])){
       <ul class="sidebar-menu">
         <li class="header">MENÚ</li>
         <li class="treeview">
-          <a href="../Coordinador.php">
+          <a href="../Encargado.php">
             <i class="fa fa-home"></i> <span>Home</span> <!-- La class de aquí es para el icono -->
             <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
             <!-- <i class="fa fa-angle-left pull-right"></i>-->
@@ -216,7 +216,7 @@ if(!isset($_SESSION["USUARIO"])){
         <small>de empaques</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="../coordinador.php"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="../Encargado.php"><i class="fa fa-home"></i> Home</a></li>
         <li><a href="#">Faltas</a></li>
         <li class="active">Eliminar faltas</li>
       </ol>

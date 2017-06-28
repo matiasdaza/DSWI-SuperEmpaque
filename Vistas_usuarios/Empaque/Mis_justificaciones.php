@@ -74,7 +74,7 @@ if(!isset($_SESSION["USUARIO"])){
               <li class="user-header">
                 <img src="../../imagenes/logo.jpg" class="img-circle" alt="User Image">
                 <?php
-                    $tipousuario="Coordinador";
+                    $tipousuario="Empaque";
                     echo "<p>".$_SESSION['USUARIO']['USU_NOMBRES']." - ".$tipousuario."</p>";
                 ?>
               </li>
@@ -187,7 +187,7 @@ if(!isset($_SESSION["USUARIO"])){
                       $con->set_charset("utf8");
                       global $con;
                       //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
-                      $sql = "SELECT jus_falta, jus_fecha, jus_usuario, tfa_nombre FROM usu_jus, usuario, falta, tipo_falta WHERE jus_falta=fal_id AND fal_tipofalta=tfa_id AND jus_usuario=usu_run;";
+                      $sql = "SELECT jus_falta, jus_fecha, jus_usuario, tfa_nombre FROM usu_jus, usuario, falta, tipo_falta WHERE jus_falta=fal_id AND fal_tipofalta=tfa_id AND jus_usuario=usu_run;"; //and jus_falcomet is NULL 
                       $respuesta = $con -> query($sql);
                       $filas = mysqli_num_rows($respuesta);
                       echo "<p>".$result["jus_falta"]."</p>";

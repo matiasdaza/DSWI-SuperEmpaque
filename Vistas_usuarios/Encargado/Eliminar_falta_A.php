@@ -41,7 +41,7 @@ if(!isset($_SESSION["USUARIO"])){
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="../coordinador.php" class="logo">
+    <a href="../Encargado.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>E</span>
       <!-- logo for regular state and mobile devices -->
@@ -120,14 +120,14 @@ if(!isset($_SESSION["USUARIO"])){
       <ul class="sidebar-menu">
         <li class="header">MENÚ</li>
         <li class="treeview">
-          <a href="../Encargado.php">
+          <a href="../encargado.php">
             <i class="fa fa-home"></i> <span>Home</span> <!-- La class de aquí es para el icono -->
             <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
             <!-- <i class="fa fa-angle-left pull-right"></i>-->
             <!--</span>-->
           </a>
         </li>
-        <li class="active treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-exclamation"></i>
             <span>Faltas</span>
@@ -142,38 +142,7 @@ if(!isset($_SESSION["USUARIO"])){
           </ul>
         </li>
         <li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-pencil-square-o"></i>
-            <span>Justificaciones</span>
-            <span class="pull-right-container">
-              <span class="fa fa-angle-left pull-right"></span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="Estado_justificacion.php"><i class="fa fa-circle-o"></i>Estado de justificaciones</a></li>
-          </ul>
-        </li>
-        <li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-database"></i>
-            <span>Mantención de tablas</span>
-            <span class="pull-right-container">
-              <span class="fa fa-angle-left pull-right"></span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="Tablas_basicas/Test.php"><i class="fa fa-circle-o"></i>Tabla Estado</a></li>
-            <li><a href="Tablas_basicas/Tcest.php"><i class="fa fa-circle-o"></i>Tabla Casa de estudio</a></li>
-            <li><a href="Tablas_basicas/Tsit.php"><i class="fa fa-circle-o"></i>Tabla Situación</a></li>
-            <li><a href="Tablas_basicas/Ttfa.php"><i class="fa fa-circle-o"></i>Tabla Tipo de falta</a></li>
-            <li><a href="Tablas_basicas/Ttjus.php"><i class="fa fa-circle-o"></i>Tabla Tipo de justificación</a></li>
-            <li><a href="Tablas_basicas/Tttu.php"><i class="fa fa-circle-o"></i>Tabla Tipo de turno</a></li>
-            <li><a href="Tablas_basicas/Ttusu.php"><i class="fa fa-circle-o"></i>Tabla Tipo de usuario</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
+        <li class="active treeview">
           <a href="Crear_turnos.php">
             <i class="fa fa-calendar-check-o "></i> <span>Crear turnos</span> <!-- La class de aquí es para el icono -->
             <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
@@ -181,18 +150,6 @@ if(!isset($_SESSION["USUARIO"])){
             <!--</span>-->
           </a>
         </li>
-        <li class="treeview">
-          <a href="../../Registro_usuario/registro.php">
-            <i class="fa fa-user-plus"></i> <span>Registrar Usuarios</span> <!-- La class de aquí es para el icono -->
-          </a>
-        </li>
-        <li class="treeview">
-          <a href="Modificar_usuarios.php">
-            <i class="fa fa-wrench"></i> <span>Modificar Usuarios</span> <!-- La class de aquí es para el icono -->
-            <!-- <span class="pull-right-container"> esto es para que se despliegue el menú -->
-            <!-- <i class="fa fa-angle-left pull-right"></i>-->
-            <!--</span>-->
-          </a>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -201,6 +158,15 @@ if(!isset($_SESSION["USUARIO"])){
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
+     <div class="box-body">
+        <div class="alert alert-info alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+           <h4><i class="icon fa fa-info"></i> Alert!</h4>
+          La falta ha sido eliminada exitosamente!
+        </div>
+      </div>
+
+
     <section class="content-header">
       <h1>
          Faltas
@@ -279,9 +245,7 @@ if(!isset($_SESSION["USUARIO"])){
   </div>
   <!-- /.content-wrapper -->
 
-  
-
-  
+    
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   

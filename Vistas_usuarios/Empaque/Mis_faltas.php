@@ -74,7 +74,7 @@ if(!isset($_SESSION["USUARIO"])){
               <li class="user-header">
                 <img src="../../imagenes/logo.jpg" class="img-circle" alt="User Image">
                 <?php
-                    $tipousuario="Coordinador";
+                    $tipousuario="Empaque";
                     echo "<p>".$_SESSION['USUARIO']['USU_NOMBRES']." - ".$tipousuario."</p>";
                 ?>
               </li>

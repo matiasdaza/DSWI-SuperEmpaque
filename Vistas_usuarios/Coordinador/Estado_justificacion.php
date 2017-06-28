@@ -41,7 +41,7 @@ if(!isset($_SESSION["USUARIO"])){
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="coordinador.php" class="logo">
+    <a href="../coordinador.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>E</span>
       <!-- logo for regular state and mobile devices -->
@@ -232,7 +232,7 @@ if(!isset($_SESSION["USUARIO"])){
                       $con->set_charset("utf8");
                       global $con;
                       //echo "<p>",$hola=date("Y").date("m").date("d"),"</p>";
-                      $sql = "SELECT jus_falta, jus_fecha, jus_usuario, tfa_nombre FROM usu_jus, usuario, falta, tipo_falta WHERE jus_falta=fal_id AND fal_tipofalta=tfa_id AND jus_usuario=usu_run;";
+                      $sql = "SELECT jus_falta, jus_fecha, jus_usuario, tfa_nombre, est_tipo FROM usu_jus, usuario, falta, tipo_falta, estado WHERE jus_falta=fal_id AND fal_tipofalta=tfa_id AND jus_usuario=usu_run AND fal_estado=est_id;";
                       $respuesta = $con -> query($sql);
                       $filas = mysqli_num_rows($respuesta);
                       echo "<p>".$result["jus_falta"]."</p>";
@@ -241,7 +241,7 @@ if(!isset($_SESSION["USUARIO"])){
                           while($result = $respuesta -> fetch_assoc()) //fetch_assoc() = devuelve un arreglo asociativo con el row en el que se encuentre
                         { 
                               
-                              echo "<option value=".$result["jus_falta"].">".$result["jus_fecha"]." - ".$result["jus_usuario"]." - ".$result["tfa_nombre"]."</option>";
+                              echo "<option value=".$result["jus_falta"].">".$result["jus_fecha"]." - ".$result["jus_usuario"]." - ".$result["tfa_nombre"]." - ".$result["est_tipo"]."</option>";
                           }
                       }
                     ?>
